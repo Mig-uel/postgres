@@ -11,7 +11,7 @@ SQL is the language used to interact with databases. PostgreSQL is a powerful, o
 3. Understanding when to use advanced features of PostgreSQL, such as indexes, views, and triggers.
 4. Managing the database, including backups, replication, and scaling in a production environment.
 
-## Writing Efficient Queries
+## Writing Queries
 
 **Database Design Process**
 
