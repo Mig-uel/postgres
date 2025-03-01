@@ -63,7 +63,7 @@ Explanation:
 - `CREATE TABLE cities` creates a new table called `cities`.
 - `(name VARCHAR(100), country VARCHAR(100), population INT, area INT)` defines the columns of the table.
 - `VARCHAR(100)` is a variable-length string with a maximum length of 100 characters.
-- `INT` is an integer data type.
+- `INT` is an integer data type, which stores whole numbers without decimal points.
 
 Keywords: Tells the database what to do.
 Identifiers: Names of tables, columns, and other objects.
