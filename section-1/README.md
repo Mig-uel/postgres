@@ -80,3 +80,10 @@ VALUES ('Paris', 'France', 2141000, 105),
        ('New York', 'USA', 8336697, 468),
        ('London', 'UK', 8908081, 1572);
 ```
+
+Explanation:
+
+- `INSERT INTO cities` inserts data into the `cities` table.
+- `(name, country, population, area)` specifies the columns where the data will be inserted.
+- `VALUES ('Paris', 'France', 2141000, 105)` specifies the values to be inserted into the columns.
+- Multiple rows can be inserted in a single `INSERT` statement.
