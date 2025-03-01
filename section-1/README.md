@@ -96,10 +96,17 @@ Explanation:
 SELECT * FROM cities;
 ```
 
+or
+
+```sql
+TABLE cities;
+```
+
 Explanation:
 
 - `SELECT *` retrieves all columns from the table.
 - `FROM cities` specifies the table from which to retrieve the data.
+- `TABLE cities` is a shortcut to display the contents of the table.
 
 **SQL**: Retrieving specific columns from the `cities` table.
 
