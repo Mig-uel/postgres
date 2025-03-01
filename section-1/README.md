@@ -118,3 +118,30 @@ Explanation:
 
 - `SELECT name, country` retrieves only the `name` and `country` columns.
 - `FROM cities` specifies the table from which to retrieve the data.
+
+#### Calculating Columns
+
+SQL is not just about pulling raw data out of a table. We can write SQL to transform or process the data before it is returned.
+
+**SQL**: Calculating the population density of cities.
+
+```sql
+SELECT name, population / area AS density
+FROM cities;
+```
+
+Explanation:
+
+- `population / area` calculates the population density by dividing the `population` by the `area`.
+- `AS density` renames the calculated column to `density`.
+
+We are not limited to just dividing columns. We can use any mathematical operation to calculate new columns:
+
+- `+` for addition
+- `-` for subtraction
+- `*` for multiplication
+- `/` for division
+- `%` for modulo
+- `^` for exponentiation
+- `sqrt()` for square root
+- `abs()` for absolute value
