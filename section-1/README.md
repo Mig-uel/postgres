@@ -64,3 +64,7 @@ Explanation:
 - `(name VARCHAR(100), country VARCHAR(100), population INT, area INT)` defines the columns of the table.
 - `VARCHAR(100)` is a variable-length string with a maximum length of 100 characters.
 - `INT` is an integer data type.
+
+Keywords: Tells the database what to do.
+Identifiers: Names of tables, columns, and other objects.
+Data Types: The type of data that can be stored in a column.
