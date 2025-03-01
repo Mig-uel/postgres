@@ -161,11 +161,12 @@ SQL also supports string operations to manipulate text data:
 **SQL**: Concatenating the `name` and `country` columns.
 
 ```sql
-SELECT name || ', ' || country AS location
+SELECT UPPER(CONCAT(name, ', ', country)) AS location
 FROM cities;
 ```
 
 Explanation:
 
-- `name || ', ' || country` concatenates the `name`, a comma and space, and the `country`.
+- `CONCAT(name, ', ', country)` concatenates the `name`, a comma, and the `country`.
+- `UPPER()` converts the concatenated string to uppercase.
 - `AS location` renames the concatenated column to `location`.
