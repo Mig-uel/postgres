@@ -13,7 +13,7 @@ SQL is the language used to interact with databases. PostgreSQL is a powerful, o
 
 ## Writing Queries
 
-**Database Design Process**
+#### Database Design Process
 
 1. What kind of thing are we storing?
 2. What properties does this thing have?
@@ -34,7 +34,7 @@ Example: A database to store a list of cities.
    - population: number
    - area: number
 
-**Creating a Table**
+#### Creating a Table
 
 1. We should create a table called `cities` to store the information.
 2. The table should have columns for `name`, `country`, `population`, and `area`.
@@ -69,7 +69,7 @@ Keywords: Tells the database what to do.
 Identifiers: Names of tables, columns, and other objects.
 Data Types: The type of data that can be stored in a column.
 
-**Inserting Data**
+#### Inserting Data
 
 ```sql
 INSERT INTO cities (name, country, population, area)
