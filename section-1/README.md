@@ -145,3 +145,27 @@ We are not limited to just dividing columns. We can use any mathematical operati
 - `^` for exponentiation
 - `sqrt()` for square root
 - `abs()` for absolute value
+
+#### String Operations
+
+SQL also supports string operations to manipulate text data:
+
+- `||` for concatenation
+- `UPPER()` to convert text to uppercase
+- `LOWER()` to convert text to lowercase
+- `LENGTH()` to get the length of a string
+- `LEFT()` to get the leftmost characters of a string
+- `RIGHT()` to get the rightmost characters of a string
+- `CONCAT()` to concatenate strings
+
+**SQL**: Concatenating the `name` and `country` columns.
+
+```sql
+SELECT name || ', ' || country AS location
+FROM cities;
+```
+
+Explanation:
+
+- `name || ', ' || country` concatenates the `name`, a comma and space, and the `country`.
+- `AS location` renames the concatenated column to `location`.
