@@ -87,3 +87,27 @@ Explanation:
 - `(name, country, population, area)` specifies the columns where the data will be inserted.
 - `VALUES ('Paris', 'France', 2141000, 105)` specifies the values to be inserted into the columns.
 - Multiple rows can be inserted in a single `INSERT` statement.
+
+#### Retrieving Data
+
+**SQL**: Retrieving all data from the `cities` table.
+
+```sql
+SELECT * FROM cities;
+```
+
+Explanation:
+
+- `SELECT *` retrieves all columns from the table.
+- `FROM cities` specifies the table from which to retrieve the data.
+
+**SQL**: Retrieving specific columns from the `cities` table.
+
+```sql
+SELECT name, country FROM cities;
+```
+
+Explanation:
+
+- `SELECT name, country` retrieves only the `name` and `country` columns.
+- `FROM cities` specifies the table from which to retrieve the data.
