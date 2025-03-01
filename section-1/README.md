@@ -47,7 +47,7 @@ Example: A database to store a list of cities.
 | Tokyo             | Japan                | 13929286                | 2187              |
 | New York          | USA                  | 8336697                 | 468               |
 
-**SQL Statements**
+**SQL**: Creating a `cities` table.
 
 ```sql
 CREATE TABLE cities (
@@ -70,6 +70,8 @@ Identifiers: Names of tables, columns, and other objects.
 Data Types: The type of data that can be stored in a column.
 
 #### Inserting Data
+
+**SQL**: Inserting data into the `cities` table.
 
 ```sql
 INSERT INTO cities (name, country, population, area)
