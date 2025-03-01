@@ -68,3 +68,13 @@ Explanation:
 Keywords: Tells the database what to do.
 Identifiers: Names of tables, columns, and other objects.
 Data Types: The type of data that can be stored in a column.
+
+**Inserting Data**
+
+```sql
+INSERT INTO cities (name, country, population, area)
+VALUES ('Paris', 'France', 2141000, 105),
+       ('Tokyo', 'Japan', 13929286, 2187),
+       ('New York', 'USA', 8336697, 468),
+       ('London', 'UK', 8908081, 1572);
+```
