@@ -126,7 +126,7 @@ SQL is not just about pulling raw data out of a table. We can write SQL to trans
 **SQL**: Calculating the population density of cities.
 
 ```sql
-SELECT name, population / area AS density
+SELECT name, population / area AS population_density
 FROM cities;
 ```
 
