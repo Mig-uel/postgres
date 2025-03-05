@@ -17,3 +17,18 @@ Aggregations are used to perform calculations on the data in a table. The most c
 
 - Looks at many rows and calculates a single output value
 - Words like 'most', 'average', 'least' are a sign that you need to use an aggregation
+
+## Joining Data From Different Tables
+
+To join data from different tables, you need to use the `JOIN` clause. The `JOIN` clause is used to combine rows from two or more tables based on a related column between them.
+
+**For each comment, show the contents of the comment and the username of the user who wrote the comment.**
+
+```sql
+SELECT contents, username
+FROM comments
+JOIN users
+ON comments.user_id = users.id;
+```
+
+The example above shows how to join the `comments` table with the `users` table. The `ON` keyword is used to specify the column that the two tables are related on.
