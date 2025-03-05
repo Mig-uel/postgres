@@ -56,7 +56,9 @@ Notes on Joins:
 
 ## Four Types of Joins
 
-By default, the `JOIN` clause is an inner join. There are four types of joins:
+By default, the `JOIN` clause is an inner join. The left table is the first table in the `JOIN` clause, and the right table is the second table in the `JOIN` clause.
+
+There are four types of joins:
 
 1. **Inner Join**: Returns records that have matching values in both tables
 
