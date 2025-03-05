@@ -111,3 +111,7 @@ ON photos.user_id = users.id;
 ```
 
 In the example above, all records from both tables are returned, even if there are no matches in the other table.
+
+## Does Order Matter?
+
+Yes, the order of the tables in the `FROM` and `JOIN` clauses matters. The left table is the first table in the `JOIN` clause, and the right table is the second table in the `JOIN` clause.
