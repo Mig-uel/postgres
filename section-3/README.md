@@ -64,3 +64,22 @@ To establish a many-to-many relationship between two tables, you can use a join 
 - Many tasks can be assigned to many employees, and many employees can be assigned many tasks.
 - Many movies can have many actors, and many actors can be in many movies.
 - Many conferences can have many attendees, and many attendees can attend many conferences.
+
+## Primary and Foreign Keys
+
+Primary keys are used to uniquely identify each record in a table. A primary key is a unique identifier for each record in a table and is used to establish relationships with other tables.
+
+Foreign keys are used to establish relationships between tables. A foreign key is a field in a table that refers to the primary key in another table. It is used to establish a link between two tables.
+
+In a one-to-many or many-to-one relationship, the foreign key is placed in the table that has the many side of the relationship. For example, in a one-to-many relationship between users and posts, the foreign key would be placed in the posts table.
+
+| Table: users     | Table: posts          |
+| ---------------- | --------------------- |
+| id (primary key) | id (primary key)      |
+| username         | title                 |
+| email            | content               |
+| password         | user_id (foreign key) |
+| created_at       | created_at            |
+| updated_at       | updated_at            |
+
+In the example above, the `user_id` column in the `posts` table is a foreign key that refers to the `id` column in the `users` table. This establishes a one-to-many relationship between users and posts.
