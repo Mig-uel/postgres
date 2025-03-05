@@ -121,3 +121,14 @@ WHERE population / area > 6000;
 
 The above SQL statement selects the `name` and `population` columns from the `city` table where the population divided by the area is greater than 6000.
 
+## Updating Records with WHERE
+
+The `WHERE` clause is also used in the `UPDATE` statement to update records based on a condition.
+
+```sql
+UPDATE cities
+SET population = 39505000
+WHERE name = 'Tokyo';
+```
+
+The above SQL statement updates the `population` column in the `cities` table to 39505000 where the `name` is 'Tokyo'.
