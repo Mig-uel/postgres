@@ -153,3 +153,25 @@ CREATE TABLE photos (
 ```
 
 In the example above, the `user_id` column in the `photos` table is a foreign key that references the `id` column in the `users` table. This establishes a one-to-many relationship between users and photos.
+
+## Running Queries on Associated Tables
+
+When you have established relationships between tables using primary and foreign keys, you can run queries that join the tables together to retrieve related data.
+
+**Find all photos associated with a user**:
+
+```sql
+SELECT * FROM photos
+WHERE user_id = 4;
+```
+
+In the example above, the query retrieves all photos that are associated with the user with an `id` of 4. The `user_id` column in the `photos` table is a foreign key that references the `id` column in the `users` table.
+
+**List all photos with details about the user who posted them**:
+
+```sql
+SELECT * FROM photos
+JOIN users ON photos.user_id = users.id
+```
+
+In the example above, the query joins the `photos` table with the `users` table on the `user_id` column in the `photos` table and the `id` column in the `users` table. This retrieves all photos with details about the user who posted them.
