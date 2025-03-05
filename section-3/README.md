@@ -175,3 +175,19 @@ JOIN users ON photos.user_id = users.id
 ```
 
 In the example above, the query joins the `photos` table with the `users` table on the `user_id` column in the `photos` table and the `id` column in the `users` table. This retrieves all photos with details about the user who posted them.
+
+## Foreign Key Constraints Around Insertions
+
+When inserting data into a table that has a foreign key constraint, you need to ensure that the value of the foreign key exists in the related table.
+
+1. We insert a photo that is tied to a user that exists in the `users` table.
+
+- This will work because the user exists in the `users` table.
+
+2. We insert a photo that refers tp a user that does not exist in the `users` table.
+
+- This will fail because the user does not exist in the `users` table.
+
+3. We insert a photo that isn't tied to any user.\
+
+- This will work because the `user_id` column in the `photos` table allows `NULL` values.
