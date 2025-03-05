@@ -53,3 +53,59 @@ Notes on Joins:
 - We can use aliases to make our queries more readable
 - Tables can be renamed using the `AS` keyword
 - There are different types of joins: `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL JOIN`
+
+## Four Types of Joins
+
+By default, the `JOIN` clause is an inner join. There are four types of joins:
+
+1. **Inner Join**: Returns records that have matching values in both tables
+
+![Inner Join](https://www.w3schools.com/sql/img_innerjoin.gif)
+
+```sql
+SELECT url, username
+FROM photos
+JOIN users
+ON photos.user_id = users.id;
+```
+
+In the example above, only the records that have matching values in both tables are returned.
+
+2. **Left Join**: Returns all records from the left table and the matched records from the right table
+
+![Left Join](https://www.w3schools.com/sql/img_leftjoin.gif)
+
+```sql
+SELECT url, username
+FROM photos
+LEFT JOIN users
+ON photos.user_id = users.id;
+```
+
+In the example above, all records from the left table are returned, even if there are no matches in the right table.
+
+3. **Right Join**: Returns all records from the right table and the matched records from the left table
+
+![Right Join](https://www.w3schools.com/sql/img_rightjoin.gif)
+
+```sql
+SELECT url, username
+FROM photos
+RIGHT JOIN users
+ON photos.user_id = users.id;
+```
+
+In the example above, all records from the right table are returned, even if there are no matches in the left table.
+
+4. **Full Join**: Returns all records when there is a match in either left or right table
+
+![Full Join](https://www.w3schools.com/sql/img_fulljoin.gif)
+
+```sql
+SELECT url, username
+FROM photos
+FULL JOIN users
+ON photos.user_id = users.id;
+```
+
+In the example above, all records from both tables are returned, even if there are no matches in the other table.
