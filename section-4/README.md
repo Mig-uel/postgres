@@ -131,3 +131,18 @@ WHERE photos.user_id = comments.user_id;
 ```
 
 The example above shows how to use the `WHERE` clause with a join. The `WHERE` clause is used to filter records where the user who posted the photo is the same user who commented on the photo.
+
+## Three-Way Joins
+
+To join three tables, you need to use two `JOIN` clauses. The first `JOIN` clause is used to join the first two tables, and the second `JOIN` clause is used to join the third table.
+
+**For each comment, list the contents of the comment, the username of the user who wrote the comment, and the URL of the photo the comment was added to.**
+
+```sql
+SELECT contents, username, url
+FROM comments
+JOIN users
+ON comments.user_id = users.id
+JOIN photos
+ON comments.photo_id = photos.id;
+```
