@@ -108,3 +108,16 @@ name = 'Delhi';
 ```
 
 The above SQL statement selects the `name` and `area` columns from the `city` table where the `area` is neither 3043 nor 8223 or the `name` is 'Delhi'.
+
+## Calculations in WHERE Clause
+
+You can also perform calculations in the `WHERE` clause.
+
+```sql
+SELECT name, population
+FROM city
+WHERE population / area > 6000;
+```
+
+The above SQL statement selects the `name` and `population` columns from the `city` table where the population divided by the area is greater than 6000.
+
