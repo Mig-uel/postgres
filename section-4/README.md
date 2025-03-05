@@ -32,3 +32,14 @@ ON comments.user_id = users.id;
 ```
 
 The example above shows how to join the `comments` table with the `users` table. The `ON` keyword is used to specify the column that the two tables are related on.
+
+**For each comment, list the contents of the comment and the URL of the photo the comment was added to.**
+
+```sql
+SELECT contents, url
+FROM comments
+JOIN photos
+ON comments.photo_id = photos.id;
+```
+
+The example above shows how to join the `comments` table with the `photos` table. The `ON` keyword is used to specify the column that the two tables are related on.
