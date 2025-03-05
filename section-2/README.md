@@ -60,3 +60,51 @@ WHERE area <> 8223;
 ```
 
 The above SQL statement selects the `name` and `area` columns from the `city` table where the `area` is not equal to 8223.
+
+## Compound WHERE Clauses
+
+You can use the `AND` and `OR` operators to combine two or more conditions in the `WHERE` clause.
+
+```sql
+SELECT name, area
+FROM city
+WHERE area BETWEEN 2000 AND 5000;
+```
+
+The above SQL statement selects the `name` and `area` columns from the `city` table where the `area` is between 2000 and 5000.
+
+```sql
+SELECT name, area
+FROM city
+WHERE name IN ('Mumbai', 'Delhi');
+```
+
+The above SQL statement selects the `name` and `area` columns from the `city` table where the `name` is either 'Mumbai' or 'Delhi'.
+
+```sql
+SELECT name, area
+FROM city
+WHERE name NOT IN ('Mumbai', 'Delhi');
+```
+
+The above SQL statement selects the `name` and `area` columns from the `city` table where the `name` is neither 'Mumbai' nor 'Delhi'.
+
+```sql
+SELECT name, area
+FROM city
+WHERE area NOT IN (3043, 8223)
+AND
+name = 'Delhi';
+```
+
+The above SQL statement selects the `name` and `area` columns from the `city` table where the `area` is neither 3043 nor 8223 and the `name` is 'Delhi'.
+
+```sql
+SELECT name, area
+FROM city
+WHERE area NOT IN (3043, 8223)
+OR
+name = 'Delhi';
+```
+
+The above SQL statement selects the `name` and `area` columns from the `city` table where the `area` is neither 3043 nor 8223 or the `name` is 'Delhi'.
