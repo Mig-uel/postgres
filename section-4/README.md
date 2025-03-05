@@ -43,3 +43,13 @@ ON comments.photo_id = photos.id;
 ```
 
 The example above shows how to join the `comments` table with the `photos` table. The `ON` keyword is used to specify the column that the two tables are related on.
+
+## Alternate Syntax for Joins
+
+Notes on Joins:
+
+- Table order between `FROM` and `JOIN` frequently makes a difference
+- We must give context if we have multiple tables with the same column name
+- We can use aliases to make our queries more readable
+- Tables can be renamed using the `AS` keyword
+- There are different types of joins: `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL JOIN`
