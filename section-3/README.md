@@ -73,6 +73,8 @@ Foreign keys are used to establish relationships between tables. A foreign key i
 
 In a one-to-many or many-to-one relationship, the foreign key is placed in the table that has the many side of the relationship. For example, in a one-to-many relationship between users and posts, the foreign key would be placed in the posts table.
 
+**Example:**
+
 | Table: users     | Table: posts          |
 | ---------------- | --------------------- |
 | id (primary key) | id (primary key)      |
@@ -83,3 +85,44 @@ In a one-to-many or many-to-one relationship, the foreign key is placed in the t
 | updated_at       | updated_at            |
 
 In the example above, the `user_id` column in the `posts` table is a foreign key that refers to the `id` column in the `users` table. This establishes a one-to-many relationship between users and posts.
+
+## Understanding Foreign Keys
+
+Foreign keys are used to establish relationships between tables. A foreign key is a field in a table that refers to the primary key in another table. It is used to establish a link between two tables.
+
+**Example:**
+
+| Table: users     | Table: photos         | Table: comments       | Table: likes          |
+| ---------------- | --------------------- | --------------------- | --------------------- |
+| id (primary key) | id (primary key)      | id (primary key)      | id (primary key)      |
+| username         | url                   | content               | user_id (foreign key) |
+| email            | user_id (foreign key) | post_id (foreign key) | post_id (foreign key) |
+| password         | created_at            | created_at            | created_at            |
+| created_at       | updated_at            | updated_at            | updated_at            |
+| updated_at       |                       |                       |                       |
+
+In the example above, the `user_id` column in the `photos`, `comments`, and `likes` tables is a foreign key that refers to the `id` column in the `users` table. This establishes a one-to-many relationship between users and photos, comments, and likes.
+
+The 'many' side of the relationship is the side that contains the foreign key. In this example, the `photos`, `comments`, and `likes` tables are the 'many' side of the relationship, and the `users` table is the 'one' side of the relationship.
+
+## Primary Keys vs. Foreign Keys
+
+**Primary Key:**
+
+- A primary key is a unique identifier for each record in a table.
+- Each row in every table has ONE primary key.
+- No other row in the same table can have the same value for the primary key.
+- 99% of the time, the primary key is called `id`.
+- Either an integer or a UUID.
+- Will never change.
+- Used to establish relationships with other tables.
+
+**Foreign Key:**
+
+- A foreign key is a field in a table that refers to the primary key in another table.
+- Rows only have a foreign key if they are related to another table.
+- Many rows in the same table can have the same value for the foreign key.
+- Name for foreign keys varies, but it often includes the name of the related table like `user_id`.
+- The value of a foreign key is the same as the value of the primary key in the related table.
+- Will change if the relationship changes.
+- Used to establish relationships between tables.
