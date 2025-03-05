@@ -139,3 +139,17 @@ CREATE TABLE users (
 ```
 
 In the example above, the `id` column is a primary key that is auto-generated using the `SERIAL` keyword. This means that the database will automatically assign a unique value to the `id` column when a new record is created.
+
+## Creating Foreign Keys
+
+When creating a foreign key in a table, you need to specify the column that will be the foreign key and the table and column that the foreign key will reference.
+
+```sql
+CREATE TABLE photos (
+  id SERIAL PRIMARY KEY,
+  url VARCHAR(255) NOT NULL,
+  user_id INTEGER REFERENCES users(id),
+)
+```
+
+In the example above, the `user_id` column in the `photos` table is a foreign key that references the `id` column in the `users` table. This establishes a one-to-many relationship between users and photos.
