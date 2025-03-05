@@ -191,3 +191,27 @@ When inserting data into a table that has a foreign key constraint, you need to 
 3. We insert a photo that isn't tied to any user.\
 
 - This will work because the `user_id` column in the `photos` table allows `NULL` values.
+
+## Foreign Key Constraints Around Deletions
+
+When deleting data from a table that has a foreign key constraint, you need to ensure that the value of the foreign key is removed from the related table.
+
+1. We delete a user that has photos associated with them.
+
+- This will fail because the user has photos associated with them.
+
+2. We delete a user that has no photos associated with them.
+
+- This will work because the user has no photos associated with them.
+
+3. We delete a photo that is associated with a user.
+
+- This will work because the photo is removed from the `photos` table.
+
+We have a couple options for how to handle deletions when foreign key constraints are in place:
+
+- **ON DELETE RESTRICT**: Prevents the deletion of a row in the parent table if there are related rows in the child table. This is the default behavior and throws an error if you try to delete a row that has related rows in the child table.
+- ** ON DELETE NO ACTION**: Also prevents the deletion of a row in the parent table if there are related rows in the child table. This is the same as `ON DELETE RESTRICT`. The only difference is that `NO ACTION` is specified explicitly.
+- **ON DELETE CASCADE**: Automatically deletes the related rows in the child table when a row in the parent table is deleted.
+- **ON DELETE SET NULL**: Sets the foreign key column in the child table to `NULL` when a row in the parent table is deleted.
+- **ON DELETE SET DEFAULT**: Sets the foreign key column in the child table to its default value when a row in the parent table is deleted.
