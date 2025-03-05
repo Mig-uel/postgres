@@ -126,3 +126,16 @@ The 'many' side of the relationship is the side that contains the foreign key. I
 - The value of a foreign key is the same as the value of the primary key in the related table.
 - Will change if the relationship changes.
 - Used to establish relationships between tables.
+
+## Auto-Generated Primary Keys
+
+When creating a new record in a table, the primary key is often auto-generated. This means that the database will automatically assign a unique value to the primary key when a new record is created.
+
+```sql
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+);
+```
+
+In the example above, the `id` column is a primary key that is auto-generated using the `SERIAL` keyword. This means that the database will automatically assign a unique value to the `id` column when a new record is created.
