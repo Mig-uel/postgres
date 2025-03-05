@@ -115,3 +115,19 @@ In the example above, all records from both tables are returned, even if there a
 ## Does Order Matter?
 
 Yes, the order of the tables in the `FROM` and `JOIN` clauses matters. The left table is the first table in the `JOIN` clause, and the right table is the second table in the `JOIN` clause.
+
+## Where with Joins
+
+The `WHERE` clause is used to filter records. The `WHERE` clause is used to extract only the records that fulfill a specified condition.
+
+**Users can comment on photos that they posted. List the url and contents for every photo/comment where this occurred.**
+
+```sql
+SELECT url, contents
+FROM photos
+JOIN comments
+ON photos.id = comments.photo_id
+WHERE photos.user_id = comments.user_id;
+```
+
+The example above shows how to use the `WHERE` clause with a join. The `WHERE` clause is used to filter records where the user who posted the photo is the same user who commented on the photo.
