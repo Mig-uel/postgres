@@ -132,3 +132,14 @@ WHERE name = 'Tokyo';
 ```
 
 The above SQL statement updates the `population` column in the `cities` table to 39505000 where the `name` is 'Tokyo'.
+
+## Deleting Records with WHERE
+
+The `WHERE` clause is also used in the `DELETE` statement to delete records based on a condition.
+
+```sql
+DELETE FROM cities
+WHERE name = 'Tokyo';
+```
+
+The above SQL statement deletes the record from the `cities` table where the `name` is 'Tokyo'.
