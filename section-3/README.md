@@ -19,3 +19,23 @@ Common features (like authentication, comments, etc) are frequently build with c
 What type of resources exist in your app? Create a separate table for each resource. For example, if you have a blog, you might have tables for `posts`, `comments`, and `tags`.
 
 Features that seem to indicate a relationship or ownership between two types of resources need to be reflected in our table design. For example, a `posts` table might have a `user_id` column to indicate which user created the post.
+
+## One-to-Many and Many-to-One Relationships
+
+One-to-many relationships are the most common type of relationship in a relational database. In a one-to-many relationship, one record in a table can be associated with multiple records in another table. For example, a user can have multiple posts, but each post can only have one user. (A user has many posts, but a post belongs to one user.)
+
+Many-to-one relationships are the inverse of one-to-many relationships. In a many-to-one relationship, multiple records in a table can be associated with a single record in another table. For example, multiple posts can be associated with a single user. (A post belongs to one user, but a user has many posts.)
+
+To establish a one-to-many or many-to-one relationship between two tables, you can use a foreign key. The foreign key is a field in one table that refers to the primary key in another table.
+
+**One-to-Many Examples:**
+
+- A boat has many crew members, but each crew member can only be on one boat.
+- A school has many students, but each student can only attend one school.
+- A company has many employees, but each employee can only work for one company.
+
+**Many-to-One Examples:**
+
+- Many crew members can be on one boat, but each crew member can only be on one boat.
+- Many students can attend one school, but each student can only attend one school.
+- Many employees can work for one company, but each employee can only work for one company.
