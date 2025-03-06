@@ -31,3 +31,26 @@ In this example, we are grouping the records in the `comments` table by the `use
 - Find the set of all unique `user_id` values in the `comments` table
 - Take each row and assign it to a group based on the `user_id` value
 
+## Aggregate Functions
+
+**Aggregate Functions**: Aggregate functions are functions that take a collection of values and return a single value. For example, you might use an aggregate function to find the average value of a field, or the total number of records in a table.
+
+- `COUNT()`: Returns the number of rows in a group
+- `SUM()`: Returns the sum of the values in a group
+- `AVG()`: Returns the average of the values in a group
+- `MIN()`: Returns the minimum value in a group
+- `MAX()`: Returns the maximum value in a group
+
+**Example**:
+
+```sql
+SELECT
+  COUNT(*),
+  SUM(salary),
+  AVG(salary),
+  MIN(salary),
+  MAX(salary)
+FROM
+  employees;
+```
+
