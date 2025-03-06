@@ -67,3 +67,19 @@ In this example, we are using the `COUNT()`, `SUM()`, `AVG()`, `MIN()`, and `MAX
 - `AVG(salary)` returns the average `salary` in the `employees` table
 - `MIN(salary)` returns the minimum `salary` in the `employees` table
 - `MAX(salary)` returns the maximum `salary` in the `employees` table
+
+# Combining Grouping and Aggregation
+
+**Example**:
+
+```sql
+SELECT user_id, COUNT(*)
+FROM comments
+GROUP BY user_id
+```
+
+In this example, we are using the `GROUP BY` clause to group the records in the `comments` table by the `user_id` field, and then using the `COUNT()` function to find the number of records in each group.
+
+- Find the set of all unique `user_id` values in the `comments` table
+- Take each row and assign it to a group based on the `user_id` value
+- Count the number of rows in each group
