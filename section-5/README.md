@@ -18,6 +18,12 @@
 
 ## Picturing Grouping
 
+**Group By**: The `GROUP BY` clause is used to group records that have the same value for a particular field. For example, you might use the `GROUP BY` clause to group all the records in a table that have the same value for a particular field.
+
+- `GROUP BY` is used to group records that have the same value for a particular field
+- `GROUP BY` is used with aggregate functions
+- `GROUP BY` is used to summarize data
+
 **Example**:
 
 ```sql
@@ -53,4 +59,3 @@ SELECT
 FROM
   employees;
 ```
-
