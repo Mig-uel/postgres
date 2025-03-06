@@ -59,3 +59,11 @@ SELECT
 FROM
   employees;
 ```
+
+In this example, we are using the `COUNT()`, `SUM()`, `AVG()`, `MIN()`, and `MAX()` functions to find the number of records in the `employees` table, the sum of the `salary` field, the average `salary`, the minimum `salary`, and the maximum `salary`.
+
+- `COUNT(*)` returns the number of rows in the `employees` table
+- `SUM(salary)` returns the sum of the `salary` field in the `employees` table
+- `AVG(salary)` returns the average `salary` in the `employees` table
+- `MIN(salary)` returns the minimum `salary` in the `employees` table
+- `MAX(salary)` returns the maximum `salary` in the `employees` table
