@@ -83,3 +83,19 @@ In this example, we are using the `GROUP BY` clause to group the records in the 
 - Find the set of all unique `user_id` values in the `comments` table
 - Take each row and assign it to a group based on the `user_id` value
 - Count the number of rows in each group
+
+## Visualizing More Grouping
+
+**Find the number of comments for each photo**:
+
+```sql
+SELECT photo_id, COUNT(*)
+FROM comments
+GROUP BY photo_id;
+```
+
+In this example, we are using the `GROUP BY` clause to group the records in the `comments` table by the `photo_id` field, and then using the `COUNT()` function to find the number of comments for each photo.
+
+- Find the set of all unique `photo_id` values in the `comments` table
+- Take each row and assign it to a group based on the `photo_id` value
+- Count the number of rows in each group (i.e., the number of comments for each photo)
