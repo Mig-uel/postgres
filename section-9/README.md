@@ -348,3 +348,32 @@ FROM products
 ```
 
 In this query, we use a correlated subquery `(SELECT COUNT(*) FROM orders WHERE orders.product_id = products.id)` in the SELECT statement to find the number of orders for each product. The subquery is correlated with the outer query by referencing the `product_id` column from the outer query.
+
+## A SELECT Without a FROM
+
+We can use a SELECT statement without a FROM clause if the subquery returns a single value.
+
+- Any subquery that results in a single value
+
+**Example:**
+
+```sql
+SELECT (
+    SELECT COUNT(*)
+    FROM orders
+) AS total_orders;
+```
+
+In this query, we use a subquery `(SELECT COUNT(*) FROM orders)` without a FROM clause to find the total number of orders. The result of the subquery is used as a single value in the SELECT statement.
+
+```sql
+SELECT (
+  SELECT MAX(price)
+  FROM products
+), (
+  SELECT MIN(price)
+  FROM products
+);
+```
+
+In this query, we use two subqueries `(SELECT MAX(price) FROM products)` and `(SELECT MIN(price) FROM products)` without a FROM clause to find the maximum and minimum prices of products. The results of the subqueries are used as single values in the SELECT statement.
