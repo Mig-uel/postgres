@@ -33,3 +33,27 @@ In this query, we first select the 4 products with the highest price using the `
 - The `UNION ALL` operator is used to combine the results of two or more `SELECT` statements into a single result set, including duplicate rows.
 - The number and order of columns in all `SELECT` statements must be the same when using the `UNION` operator.
 - The data types of the corresponding columns in all `SELECT` statements must be compatible when using the `UNION` operator.
+
+## Commonalities with Intersections
+
+**INTERSECT** is another set operation that is used to combine the results of two or more `SELECT` statements into a single result set. The `INTERSECT` operator returns only the rows that are common to all `SELECT` statements.
+
+- The `INTERSECT` operator removes duplicate rows from the result set.
+- Finds the rows that are common in the results of two or more `SELECT` statements.
+
+**INTERSECT ALL** is used to combine the results of two or more `SELECT` statements into a single result set, including duplicate rows.
+
+**EXCEPT** is used to combine the results of two `SELECT` statements and returns only the rows that are present in the first result set but not in the second result set.
+
+- Finds the rows that are present in the first result set but not in the second result set.
+- The `EXCEPT` operator removes duplicate rows from the result set.
+
+**EXCEPT ALL** is used to combine the results of two `SELECT` statements and returns only the rows that are present in the first result set but not in the second result set, including duplicate rows.
+
+**UNION** is used to combine the results of two or more `SELECT` statements into a single result set.
+
+- The `UNION` operator removes duplicate rows from the result set.
+
+**UNION ALL** is used to combine the results of two or more `SELECT` statements into a single result set, including duplicate rows.
+
+(sets are query results)
