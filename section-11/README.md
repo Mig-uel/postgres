@@ -45,3 +45,25 @@ FROM products;
 ```
 
 In the example above, we are calculating the sale price for each item in the `products` table. The sale price is calculated as the minimum of `(price * 0.5)` or `$400` using the `LEAST` function.
+
+## The COALESCE Function
+
+The `COALESCE` function is used to return the first non-null value in a list of expressions. It takes a list of expressions as arguments and returns the first non-null value among them.
+
+**Example**
+
+```sql
+SELECT COALESCE(NULL, 10, 20, 30);
+```
+
+In the example above, the `COALESCE` function is used to return the first non-null value among `NULL`, 10, 20, and 30. The result of this query will be 10.
+
+The `COALESCE` function can take any number of arguments and can be used with different data types such as integers, decimals, and strings.
+
+**Calculate the total cost of each order. If the shipping cost is NULL, assume it is $10.**
+
+```sql
+SELECT order_id, COALESCE(shipping_cost, 10) AS total_cost
+```
+
+In the example above, we are calculating the total cost of each order in the `orders` table. If the `shipping_cost` is `NULL`, we assume it is `$10` using the `COALESCE` function.
