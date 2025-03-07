@@ -17,3 +17,5 @@ FROM products;
 ```
 
 This query will return unique combinations of department and category from the products table.
+
+The DISTINCT keyword is useful when we want to retrieve unique values from a column or a combination of columns in a table.
