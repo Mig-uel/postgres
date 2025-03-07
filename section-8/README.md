@@ -57,3 +57,18 @@ In this query, we first select the 4 products with the highest price using the `
 **UNION ALL** is used to combine the results of two or more `SELECT` statements into a single result set, including duplicate rows.
 
 (sets are query results)
+
+## Removing Commonalities with EXCEPT
+
+```sql
+(SELECT id, name
+FROM products
+ORDER BY price / weight DESC
+LIMIT 6) EXCEPT (
+SELECT id, name
+FROM products
+ORDER BY price DESC
+LIMIT 6);
+```
+
+In this query, we first select the 6 products with the highest price/weight ratio using the `ORDER BY` and `LIMIT` clauses. We then use the `EXCEPT` operator to remove the products with the highest price from this result set. The `EXCEPT` operator returns only the rows that are present in the first result set but not in the second result set.
