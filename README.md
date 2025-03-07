@@ -1,3 +1,5 @@
+![SQL Banner](./images/sql-banner.svg)
+
 # SQL and PostgreSQL Course
 
 This repository contains my notes and code examples from the SQL and PostgreSQL course by Stephen Grider.
