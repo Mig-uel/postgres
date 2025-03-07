@@ -311,3 +311,25 @@ WHERE price > SOME (
 ```
 
 In this query, we use the `SOME` operator with a subquery `(SELECT price FROM products WHERE department = 'Industrial')` in the WHERE clause to find products that are more expensive than at least one product in the 'Industrial' department. The result of the subquery is used to filter the 'products' table based on the price of each product.
+
+## Probably Too Much About Correlated Subqueries
+
+A correlated subquery is a subquery that depends on the outer query for its values. The subquery is executed for each row processed by the outer query and can reference columns from the outer query.
+
+- A correlated subquery is executed once for each row processed by the outer query.
+- The subquery can reference columns from the outer query.
+- Correlated subqueries can be used to filter, aggregate, or compare data based on specific conditions.
+
+**Show the name, department, and price of the most expensive product in each department:**
+
+```sql
+SELECT name, department, price
+FROM products as p1
+WHERE price = (
+    SELECT MAX(price)
+    FROM products as p2
+    WHERE p1.department = p2.department
+);
+```
+
+In this query, we use a correlated subquery `(SELECT MAX(price) FROM products as p2 WHERE p1.department = p2.department)` in the WHERE clause to find the most expensive product in each department. The subquery is correlated with the outer query by referencing the `department` column from the outer query.
