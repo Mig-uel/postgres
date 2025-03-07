@@ -131,3 +131,17 @@ WHERE price_weight_ratio > 10;
 ```
 
 In this query, we use a subquery `(SELECT name, price / weight AS price_weight_ratio FROM products)` in the FROM clause to calculate the price-to-weight ratio for each product. The result of the subquery is aliased as `derived_table` and used in the outer query to filter products with a price-to-weight ratio greater than 10.
+
+## FROM Subqueries that Return Values
+
+We do not have to use subqueries that return rows. We can also use subqueries that return values as long as the outer query is compatible with the subquery.
+
+```sql
+SELECT *
+FROM (
+    SELECT MAX(price)
+    FROM products
+) AS derived_table;
+```
+
+In this query, the subquery `(SELECT MAX(price) FROM products)` returns a single value (the maximum price from the 'products' table). The result of the subquery is aliased as `derived_table` and displayed as a single row and single column in the output.
