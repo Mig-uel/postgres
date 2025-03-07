@@ -160,3 +160,27 @@ FROM (
 ```
 
 In this query, we use a subquery `(SELECT user_id, COUNT(*) AS order_count FROM orders GROUP BY user_id)` in the FROM clause to calculate the number of orders for each user. The result of the subquery is aliased as `user_order_counts` and used in the outer query to find the average number of orders for all users.
+
+## Subquery in a JOIN Clause
+
+Subqueries can also be used in the JOIN clause of a SQL query to filter or join data from different tables based on specific conditions.
+
+- A subquery in the JOIN clause can be used to filter rows from one table based on the results of another table.
+- The subquery must be enclosed in parentheses and given an alias to reference it in the JOIN clause.
+- Subqueries in the JOIN clause can be used to perform complex joins or filter data based on specific criteria.
+- Any subquery that returns data compatible with the JOIN clause can be used in the JOIN clause.
+
+**Example:**
+
+```sql
+SELECT first_name,
+FROM users
+JOIN (
+  SELECT user_id
+  FROM orders
+  WHERE product_id = 3
+) AS user_orders
+ON users.id = user_orders.user_id;
+```
+
+In this query, we use a subquery `(SELECT user_id FROM orders WHERE product_id = 3)` in the JOIN clause to filter users who have ordered a specific product (product_id = 3). The result of the subquery is aliased as `user_orders` and used in the JOIN clause to join the 'users' table with the filtered orders.
