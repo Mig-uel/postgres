@@ -34,3 +34,39 @@ In the above query, we use a subquery to find the maximum price of products in t
 
 - The subquery `(SELECT MAX(price) FROM products WHERE department = 'Toys')` retrieves the maximum price of products in the 'Toys' department.
 - The outer query `SELECT name, price FROM products WHERE price > (...) AND department != 'Toys';` retrieves the name and price of products that are more expensive than the maximum price in the 'Toys' department.
+
+## Thinking About the Structure of Data
+
+When working with subqueries, it is essential to think about the structure of the data and how the subquery will interact with the outer query. Understanding the relationships between tables and the data being retrieved is crucial for writing efficient and effective queries.
+
+Subqueries can be used to filter, aggregate, or compare data from different tables or columns within the same table. They provide a powerful way to manipulate and retrieve data based on specific conditions or criteria.
+
+Subqueries can be used as:
+
+- A source of value
+- A source of rows
+- A source of tables
+- A source of columns
+
+**Understanding the shape of a query result is key!**
+
+```sql
+SELECT *
+FROM orders
+```
+
+This query will return multiple rows and columns.
+
+```sql
+SELECT id
+FROM orders
+```
+
+This query will return multiple rows but only one column.
+
+```sql
+SELECT COUNT(*)
+FROM orders
+```
+
+This query will return a single row and a single column. It is a scalar query. Whenever we get back one row and one column (single value), it is called a scalar query.
