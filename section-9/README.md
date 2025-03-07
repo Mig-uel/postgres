@@ -290,3 +290,24 @@ WHERE price > ALL (
 ```
 
 In this query, we use the `ALL` operator with a subquery `(SELECT price FROM products WHERE department = 'Industrial')` in the WHERE clause to find products that are more expensive than all products in the 'Industrial' department. The result of the subquery is used to filter the 'products' table based on the price of each product.
+
+## SOME/ANY Operator with a Subquery
+
+The `SOME` or `ANY` operator can be used with a subquery to filter data based on specific conditions.
+
+- The `SOME` or `ANY` operator is used to include rows that match any value in the list returned by the subquery.
+- The `SOME` or `ANY` operator is equivalent and can be used interchangeably.
+
+**Show the name of products that are more expensive than at least one product in the 'Industrial' department:**
+
+```sql
+SELECT name
+FROM products
+WHERE price > SOME (
+    SELECT price
+    FROM products
+    WHERE department = 'Industrial'
+);
+```
+
+In this query, we use the `SOME` operator with a subquery `(SELECT price FROM products WHERE department = 'Industrial')` in the WHERE clause to find products that are more expensive than at least one product in the 'Industrial' department. The result of the subquery is used to filter the 'products' table based on the price of each product.
