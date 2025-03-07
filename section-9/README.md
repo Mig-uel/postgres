@@ -333,3 +333,18 @@ WHERE price = (
 ```
 
 In this query, we use a correlated subquery `(SELECT MAX(price) FROM products as p2 WHERE p1.department = p2.department)` in the WHERE clause to find the most expensive product in each department. The subquery is correlated with the outer query by referencing the `department` column from the outer query.
+
+## More on Correlated Subqueries
+
+**Without using a join or a group by, print the number of orders for each product:**
+
+```sql
+SELECT name, (
+    SELECT COUNT(*)
+    FROM orders
+    WHERE orders.product_id = products.id
+) AS order_count
+FROM products
+```
+
+In this query, we use a correlated subquery `(SELECT COUNT(*) FROM orders WHERE orders.product_id = products.id)` in the SELECT statement to find the number of orders for each product. The subquery is correlated with the outer query by referencing the `product_id` column from the outer query.
