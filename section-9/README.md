@@ -70,3 +70,43 @@ FROM orders
 ```
 
 This query will return a single row and a single column. It is a scalar query. Whenever we get back one row and one column (single value), it is called a scalar query.
+
+## Subquery in a SELECT Statement
+
+We can insert subqueries in multiple parts of a SQL query. One common use case is to include a subquery in the SELECT statement to retrieve additional information or perform calculations based on the data in the database.
+
+If you want to add a subquery in the SELECT statement, you need to ensure that the subquery returns a single value (scalar value). Otherwise, you will encounter an error when executing the query.
+
+- Any subquery that returns a single value can be used in the SELECT statement.
+- The subquery must be enclosed in parentheses and placed in the SELECT clause.
+
+**Example:**
+
+```sql
+SELECT MAX(price)
+FROM products;
+```
+
+This query will return a single value (the maximum price from the 'products' table) and can be used in the SELECT statement.
+
+```sql
+SELECT name, price, (
+    SELECT MAX(price)
+    FROM products
+) AS max_price
+FROM products;
+```
+
+In this query, we include a subquery `(SELECT MAX(price) FROM products)` in the SELECT statement to retrieve the maximum price of products. The result of the subquery is aliased as `max_price` and displayed as an additional column in the output.
+
+```sql
+SELECT name, price, (
+    SELECT price
+    FROM products
+    WHERE id = 3
+) as id_3_price
+FROM products
+WHERE price > 876;
+```
+
+In this query, we include a subquery `(SELECT price FROM products WHERE id = 3)` in the SELECT statement to retrieve the price of the product with `id = 3`. The result of the subquery is aliased as `id_3_price` and displayed as an additional column in the output.
