@@ -67,3 +67,40 @@ SELECT order_id, COALESCE(shipping_cost, 10) AS total_cost
 ```
 
 In the example above, we are calculating the total cost of each order in the `orders` table. If the `shipping_cost` is `NULL`, we assume it is `$10` using the `COALESCE` function.
+
+## The CASE Keyword
+
+The `CASE` keyword is used to perform conditional logic in SQL queries. It allows you to define conditions and return different values based on those conditions.
+
+**Example**
+
+```sql
+SELECT
+  name,
+  CASE
+    WHEN price > 1000 THEN 'Expensive'
+    WHEN price > 500 THEN 'Moderate'
+    ELSE 'Affordable'
+  END AS price_category
+FROM products;
+```
+
+In the example above, we are categorizing the products in the `products` table based on their price. If the price is greater than `1000`, the product is categorized as `'Expensive'`. If the price is greater than `500`, the product is categorized as `'Moderate'`. Otherwise, the product is categorized as `'Affordable'`.
+
+The `CASE` keyword can be used with multiple `WHEN` conditions and an optional `ELSE` condition to handle cases where none of the conditions are met. `END AS` is used to specify the alias for the resulting column.
+
+**Print each product and its price. Also, print a description of the price. If price > 600, print 'high'. If price > 300, print 'medium'. Otherwise, print 'cheap'.**
+
+```sql
+SELECT
+  name,
+  price,
+  CASE
+    WHEN price > 600 THEN 'high'
+    WHEN price > 300 THEN 'medium'
+    ELSE 'cheap'
+  END AS price_description
+FROM products;
+```
+
+In the example above, we are printing each product and its price from the `products` table. We are also printing a description of the price based on the conditions specified in the `CASE` statement.
