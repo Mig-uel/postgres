@@ -84,3 +84,17 @@ Examples:
 | `VARCHAR`            | Store some characters, length can be very large                                |
 | `TEXT`               | Store lots of characters, length can be very large                             |
 | `CITEXT`             | Store some characters, case-insensitive                                        |
+
+## Boolean Data Types
+
+- `boolean`: A true or false value.
+- `bit`: A fixed-length bit string.
+- `bit varying(n)`: A variable-length bit string.
+- `bool`: An alias for `boolean`.
+  <br/>
+- TRUE
+  - true, yes, on, 1, t, y
+- FALSE
+  - false, no, off, 0, f, n
+- NULL
+  - NULL
