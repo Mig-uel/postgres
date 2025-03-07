@@ -239,3 +239,23 @@ WHERE price > (
 ```
 
 In this query, we use a subquery `(SELECT AVG(price) FROM products)` in the WHERE clause to find the average price of products. The result of the subquery is used to filter the 'products' table based on the price of each product.
+
+## The NOT IN Operator with a List
+
+The `NOT IN` operator can be used with a list of values returned by a subquery to filter data based on specific conditions.
+
+- The `NOT IN` operator is used to exclude rows that match any value in the list returned by the subquery.
+
+**Show the name of all products that are not in the same department as products with a price less than 100:**
+
+```sql
+SELECT name, department
+FROM products
+WHERE department NOT IN (
+    SELECT department
+    FROM products
+    WHERE price < 100
+);
+```
+
+In this query, we use a subquery `(SELECT department FROM products WHERE price < 100)` in the WHERE clause to find the departments of products with a price less than 100. The result of the subquery is used to filter the 'products' table based on the department of each product.
