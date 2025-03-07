@@ -145,3 +145,18 @@ FROM (
 ```
 
 In this query, the subquery `(SELECT MAX(price) FROM products)` returns a single value (the maximum price from the 'products' table). The result of the subquery is aliased as `derived_table` and displayed as a single row and single column in the output.
+
+## Example of Subquery in a FROM Clause
+
+**Find the average number of orders for all users.**
+
+```sql
+SELECT AVG(order_count)
+FROM (
+    SELECT user_id, COUNT(*) AS order_count
+    FROM orders
+    GROUP BY user_id
+) AS user_order_counts;
+```
+
+In this query, we use a subquery `(SELECT user_id, COUNT(*) AS order_count FROM orders GROUP BY user_id)` in the FROM clause to calculate the number of orders for each user. The result of the subquery is aliased as `user_order_counts` and used in the outer query to find the average number of orders for all users.
