@@ -123,6 +123,16 @@ GROUP BY photo_id
 HAVING photo_id < 3 AND COUNT(*) > 2;
 ```
 
+or
+
+```sql
+SELECT photo_id, COUNT(*)
+FROM comments
+WHERE photo_id < 3
+GROUP BY photo_id
+HAVING COUNT(*) > 2;
+```
+
 In this example, we are using the `GROUP BY` clause to group the records in the `comments` table by the `photo_id` field, and then using the `HAVING` clause to filter the groups where the `photo_id` is less than 3 and the number of comments is greater than 2.
 
 - Find the set of all unique `photo_id` values in the `comments` table
