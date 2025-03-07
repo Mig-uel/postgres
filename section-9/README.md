@@ -207,3 +207,35 @@ WHERE product_id IN (
 ```
 
 In this query, we use a subquery `(SELECT id FROM products WHERE price / weight > 50)` in the WHERE clause to filter orders that involve a product with a price-to-weight ratio greater than 5. The result of the subquery is used to filter the 'orders' table based on the product_id.
+
+## Data Structure with WHERE Subqueries
+
+When using subqueries in the WHERE clause, it is essential to understand the structure of the data returned by the subquery and how it interacts with the outer query.
+
+- The subquery in the WHERE clause must return a single value or a list of values that can be compared with the outer query.
+- The structure of the data returned by the subquery must match the data type and format expected by the operator used in the WHERE clause.
+- Subqueries in the WHERE clause can be used to filter data based on specific conditions or criteria.
+
+| Operator | Subquery Return Data Structure |
+| -------- | ------------------------------ |
+| >        | Single Value                   |
+| <        | Single Value                   |
+| >=       | Single Value                   |
+| <=       | Single Value                   |
+| =        | Single Value                   |
+| <> or != | Single Value                   |
+| IN       | List of Values                 |
+| NOT IN   | List of Values                 |
+
+**Show the name of all products with a price greater than the average product price:**
+
+```sql
+SELECT name
+FROM products
+WHERE price > (
+    SELECT AVG(price)
+    FROM products
+);
+```
+
+In this query, we use a subquery `(SELECT AVG(price) FROM products)` in the WHERE clause to find the average price of products. The result of the subquery is used to filter the 'products' table based on the price of each product.
