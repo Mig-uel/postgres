@@ -110,3 +110,24 @@ WHERE price > 876;
 ```
 
 In this query, we include a subquery `(SELECT price FROM products WHERE id = 3)` in the SELECT statement to retrieve the price of the product with `id = 3`. The result of the subquery is aliased as `id_3_price` and displayed as an additional column in the output.
+
+## Subquery in a FROM Clause
+
+Subqueries can also be used in the FROM clause of a SQL query. When a subquery is used in the FROM clause, it acts as a derived table or subquery table that can be referenced in the outer query.
+
+- A subquery in the FROM clause is treated as a temporary table that can be used to filter, join, or aggregate data.
+- The subquery must be enclosed in parentheses and given an alias to reference it in the outer query.
+- Any subquery, so long as the outer selects/wheres/etc are compatible with the subquery, can be used in the FROM clause.
+
+**Example:**
+
+```sql
+SELECT name, price_weight_ratio
+FROM (
+    SELECT name, price / weight AS price_weight_ratio
+    FROM products
+) AS derived_table
+WHERE price_weight_ratio > 10;
+```
+
+In this query, we use a subquery `(SELECT name, price / weight AS price_weight_ratio FROM products)` in the FROM clause to calculate the price-to-weight ratio for each product. The result of the subquery is aliased as `derived_table` and used in the outer query to filter products with a price-to-weight ratio greater than 10.
