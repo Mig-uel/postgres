@@ -99,3 +99,33 @@ In this example, we are using the `GROUP BY` clause to group the records in the 
 - Find the set of all unique `photo_id` values in the `comments` table
 - Take each row and assign it to a group based on the `photo_id` value
 - Count the number of rows in each group (i.e., the number of comments for each photo)
+
+## Filtering Groups with HAVING
+
+**Having**: The `HAVING` clause is used to filter groups that have a particular property. For example, you might use the `HAVING` clause to find all the groups that have more than a certain number of records.
+
+- `HAVING` is used to filter groups that have a particular property
+- `HAVING` is used with aggregate functions
+- `HAVING` is used to filter groups after they have been grouped
+
+**WHERE vs. HAVING**:
+
+- `WHERE` is used to filter rows before they are grouped
+- `HAVING` is used to filter groups after they have been grouped
+- You are never going to use `HAVING` without `GROUP BY`
+
+**Find the number of comments for each photo where the photo_id is less than 3 and the photo has more than 2 comments**:
+
+```sql
+SELECT photo_id, COUNT(*)
+FROM comments
+GROUP BY photo_id
+HAVING photo_id < 3 AND COUNT(*) > 2;
+```
+
+In this example, we are using the `GROUP BY` clause to group the records in the `comments` table by the `photo_id` field, and then using the `HAVING` clause to filter the groups where the `photo_id` is less than 3 and the number of comments is greater than 2.
+
+- Find the set of all unique `photo_id` values in the `comments` table
+- Take each row and assign it to a group based on the `photo_id` value
+- Count the number of rows in each group (i.e., the number of comments for each photo)
+- Filter the groups where the `photo_id` is less than 3 and the number of comments is greater than 2
