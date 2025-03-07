@@ -139,3 +139,22 @@ In this example, we are using the `GROUP BY` clause to group the records in the 
 - Take each row and assign it to a group based on the `photo_id` value
 - Count the number of rows in each group (i.e., the number of comments for each photo)
 - Filter the groups where the `photo_id` is less than 3 and the number of comments is greater than 2
+
+## More on HAVING
+
+**Find the users (user_id) where the user has commented on the first 2 photos and the user added more than 2 comments on those photos**:
+
+```sql
+SELECT user_id, COUNT(*)
+FROM comments
+WHERE photo_id < 3
+GROUP BY user_id
+HAVING COUNT(*) > 2;
+```
+
+In this example, we are using the `GROUP BY` clause to group the records in the `comments` table by the `user_id` field, and then using the `HAVING` clause to filter the groups where the `photo_id` is less than 3 and the number of comments is greater than 2.
+
+- Find the set of all unique `user_id` values in the `comments` table
+- Take each row and assign it to a group based on the `user_id` value
+- Count the number of rows in each group (i.e., the number of comments for each user)
+- Filter the groups where the `photo_id` is less than 3 and the number of comments is greater than 2
