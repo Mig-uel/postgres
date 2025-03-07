@@ -184,3 +184,26 @@ ON users.id = user_orders.user_id;
 ```
 
 In this query, we use a subquery `(SELECT user_id FROM orders WHERE product_id = 3)` in the JOIN clause to filter users who have ordered a specific product (product_id = 3). The result of the subquery is aliased as `user_orders` and used in the JOIN clause to join the 'users' table with the filtered orders.
+
+## Subquery in a WHERE Clause
+
+Subqueries can be used in the WHERE clause of a SQL query to filter data based on specific conditions or criteria.
+
+- A subquery in the WHERE clause can be used to filter rows based on the results of another query.
+- The subquery must return a single value or a list of values that can be compared with the outer query.
+- Subqueries in the WHERE clause can be used to filter data based on complex conditions or criteria.
+- Structure of data allowed to be returned by the subquery changes depending on the operator used in the WHERE clause.
+
+**Show the id of orders that involve a product with a price/weight ratio greater than 5:**
+
+```sql
+SELECT id
+FROM orders
+WHERE product_id IN (
+    SELECT id
+    FROM products
+    WHERE price / weight > 50
+);
+```
+
+In this query, we use a subquery `(SELECT id FROM products WHERE price / weight > 50)` in the WHERE clause to filter orders that involve a product with a price-to-weight ratio greater than 5. The result of the subquery is used to filter the 'orders' table based on the product_id.
