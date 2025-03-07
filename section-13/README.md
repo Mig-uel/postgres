@@ -74,3 +74,13 @@ Examples:
   - Bank balance, grams of gold, scientific calculations?
 - Need to store a number with a decimal and the precision is not critical? Mark the column as `real` or `double precision`
   - Kilograms of trash in a landfill, liters of water in a lake, air pressure in a tire?
+
+## Reminder on Character Data Types
+
+| Character Data Types | Description                                                                    |
+| -------------------- | ------------------------------------------------------------------------------ |
+| `char(n)`            | Store some characters, length will always be n even if PG has to insert spaces |
+| `varchar(n)`         | Store some characters, length can be up to n                                   |
+| `VARCHAR`            | Store some characters, length can be very large                                |
+| `TEXT`               | Store lots of characters, length can be very large                             |
+| `CITEXT`             | Store some characters, case-insensitive                                        |
