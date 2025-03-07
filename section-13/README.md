@@ -58,3 +58,19 @@ Numbers with decimal points
 - `real`: A single-precision floating-point number (4 bytes) ranging from 1.18e-38 to 3.4e+38.
 - `double precision`: A double-precision floating-point number (8 bytes) ranging from 2.23e-308 to 1.79e+308 (15 decimal digits).
 - `float(p)`: A floating-point number with `p` digits of precision.
+
+## Fast Rules on Numeric Data Types
+
+- Use `integer` for whole numbers.
+- Use `decimal` or `numeric` for fixed-point numbers.
+- Use `real` or `double precision` for floating-point numbers.
+- Use `serial` for auto-incrementing primary keys.
+
+Examples:
+
+- 'id' columns are typically `serial` or `bigserial`
+- Need to store a number without a decimal point? Mark the column as `integer`
+- Need to store a number with a decimal and this data needs to be precise? Mark the column as `decimal` or `numeric`
+  - Bank balance, grams of gold, scientific calculations?
+- Need to store a number with a decimal and the precision is not critical? Mark the column as `real` or `double precision`
+  - Kilograms of trash in a landfill, liters of water in a lake, air pressure in a tire?
