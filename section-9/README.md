@@ -259,3 +259,34 @@ WHERE department NOT IN (
 ```
 
 In this query, we use a subquery `(SELECT department FROM products WHERE price < 100)` in the WHERE clause to find the departments of products with a price less than 100. The result of the subquery is used to filter the 'products' table based on the department of each product.
+
+## A New WHERE Operator
+
+| Operator                   | Subquery Return Data Structure |
+| -------------------------- | ------------------------------ |
+| > ALL                      | Single Column                  |
+| < ALL                      | Single Column                  |
+| >= ALL                     | Single Column                  |
+| <= ALL                     | Single Column                  |
+| = ALL                      | Single Column                  |
+| <> ALL or != ALL           | Single Column                  |
+| > SOME/ANY                 | Single Column                  |
+| < SOME/ANY                 | Single Column                  |
+| >= SOME/ANY                | Single Column                  |
+| <= SOME/ANY                | Single Column                  |
+| = SOME/ANY                 | Single Column                  |
+| <> SOME/ANY or != SOME/ANY | Single Column                  |
+
+**Show the name, department, and price of products that are more expensive than all products in the 'Industrial' department:**
+
+```sql
+SELECT name, department, price
+FROM products
+WHERE price > ALL (
+    SELECT price
+    FROM products
+    WHERE department = 'Industrial'
+);
+```
+
+In this query, we use the `ALL` operator with a subquery `(SELECT price FROM products WHERE department = 'Industrial')` in the WHERE clause to find products that are more expensive than all products in the 'Industrial' department. The result of the subquery is used to filter the 'products' table based on the price of each product.
