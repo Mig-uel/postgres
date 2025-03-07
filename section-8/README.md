@@ -25,3 +25,11 @@ In this query, we first select the 4 products with the highest price using the `
 - The `UNION` operator is used to combine the results of two or more `SELECT` statements into a single result set.
 - The `UNION` operator removes duplicate rows from the result set.
 - The `UNION ALL` operator is used to combine the results of two or more `SELECT` statements into a single result set, including duplicate rows.
+
+# A Few Notes on Unions
+
+- The `UNION` operator is used to combine the results of two or more `SELECT` statements into a single result set.
+- The `UNION` operator removes duplicate rows from the result set.
+- The `UNION ALL` operator is used to combine the results of two or more `SELECT` statements into a single result set, including duplicate rows.
+- The number and order of columns in all `SELECT` statements must be the same when using the `UNION` operator.
+- The data types of the corresponding columns in all `SELECT` statements must be compatible when using the `UNION` operator.
