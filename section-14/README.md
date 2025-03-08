@@ -16,3 +16,18 @@ Things we can check for when a row is being inserted or updated:
 - Is a given value defined?
 - Is a value unique in its column?
 - Is a value >, <, >=, <=, =, some other value?
+
+## Applying a NULL Constraint
+
+A **NULL constraint** is used to ensure that a column does not contain any NULL values. This can be done by adding the `NOT NULL` constraint to the column definition when creating a table.
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    age INT NOT NULL
+);
+```
+
+In this example, the `name`, `email`, and `age` columns are defined with the `NOT NULL` constraint, which means that these columns cannot contain NULL values.
