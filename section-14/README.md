@@ -177,3 +177,37 @@ DROP CONSTRAINT check_age;
 ```
 
 This will remove the `CHECK` constraint from the `age` column in the `users` table.
+
+## Multi-Column Uniqueness
+
+A **multi-column uniqueness constraint** is used to ensure that the combination of values in multiple columns is unique across all rows in a table. This can be done by adding a `UNIQUE` constraint to a combination of columns when creating a table.
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    UNIQUE (first_name, last_name)
+);
+```
+
+In this example, the combination of the `first_name` and `last_name` columns is defined with a `UNIQUE` constraint, which means that the combination of values in these columns must be unique across all rows in the `users` table.
+
+We can also add a multi-column uniqueness constraint to an existing table using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+ADD CONSTRAINT unique_name UNIQUE (first_name, last_name);
+```
+
+This will add a multi-column uniqueness constraint to the `first_name` and `last_name` columns in the `users` table, ensuring that the combination of values in these columns is unique across all rows.
+
+We can also remove a multi-column uniqueness constraint from a table using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+DROP CONSTRAINT unique_name;
+```
+
+This will remove the multi-column uniqueness constraint from the `first_name` and `last_name` columns in the `users` table.
