@@ -31,3 +31,21 @@ CREATE TABLE users (
 ```
 
 In this example, the `name`, `email`, and `age` columns are defined with the `NOT NULL` constraint, which means that these columns cannot contain NULL values.
+
+We can also add a `NOT NULL` constraint to an existing column using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+ALTER COLUMN age SET NOT NULL;
+```
+
+This will ensure that the `age` column in the `users` table does not contain any NULL values.
+
+We can also remove the `NOT NULL` constraint from a column using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+ALTER COLUMN age DROP NOT NULL;
+```
+
+This will allow the `age` column in the `users` table to contain NULL values.
