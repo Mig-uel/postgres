@@ -245,3 +245,39 @@ DROP CONSTRAINT check_delivery;
 ```
 
 This will remove the multi-column `CHECK` constraint from the `created_at` and `est_delivery` columns in the `orders` table.
+
+## So Where Should We Be Applying Validation?
+
+- **Client-Side Validation**: Ensures that the data entered by the user is valid before sending it to the server. This can be done using JavaScript or other client-side technologies.
+- **Server-Side Validation**: Ensures that the data received from the client is valid before processing it further. This can be done using server-side technologies such as Node.js, Python, or Java.
+- **Database-Side Validation**: Ensures that the data stored in the database meets certain criteria or constraints. This can be done using database constraints such as `NOT NULL`, `UNIQUE`, and `CHECK`.
+
+It is important to apply validation at all three levels to ensure the integrity and security of the data in your application.
+
+**Server-Side Validation**:
+
+- Ensures that the data received from the client is valid before processing it further.
+- Can be done using server-side technologies such as Node.js, Python, or Java.
+- Easier to express more complex validation rules.
+- Far easier to apply, maintain, and update validation rules.
+- Many libraries and frameworks provide built-in validation functionality.
+
+**Database-Side Validation**:
+
+- Ensures that the data stored in the database meets certain criteria or constraints.
+- Can be done using database constraints such as `NOT NULL`, `UNIQUE`, and `CHECK`.
+- Ensures data integrity at the database level.
+- Can be more efficient for certain types of validation.
+- Can be more secure as it is harder to bypass.
+- Validation is still applied even if you connect with a different client.
+- Guaranteed that validation is always applied, regardless of the client used.
+- Can only apply new validation rules if all existing data meets the criteria.
+
+**Client-Side Validation**:
+
+- Ensures that the data entered by the user is valid before sending it to the server.
+- Can be done using JavaScript or other client-side technologies.
+- Provides immediate feedback to the user.
+- Reduces the load on the server by preventing invalid data from being sent.
+- Can be bypassed by disabling JavaScript or using other tools.
+- Should not be relied upon as the sole source of validation.
