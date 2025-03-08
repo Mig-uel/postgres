@@ -143,3 +143,37 @@ DROP CONSTRAINT unique_email;
 ```
 
 This will remove the `UNIQUE` constraint from the `email` column in the `users` table.
+
+## Applying a Check Constraint
+
+A **check constraint** is used to ensure that the data in a column meets certain criteria or conditions. This can be done by adding the `CHECK` constraint to the column definition when creating a table.
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    age INT NOT NULL
+    CHECK (age >= 18)
+);
+```
+
+In this example, the `age` column is defined with a `CHECK` constraint that ensures the data in this column is greater than or equal to `18`. This means that any value inserted into the `age` column must be `18` or higher.
+
+We can also add a `CHECK` constraint to an existing column using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+ADD CONSTRAINT check_age CHECK (age >= 18);
+```
+
+This will add a `CHECK` constraint to the `age` column in the `users` table, ensuring that the data in this column meets the specified criteria.
+
+We can also remove a `CHECK` constraint from a column using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+DROP CONSTRAINT check_age;
+```
+
+This will remove the `CHECK` constraint from the `age` column in the `users` table.
