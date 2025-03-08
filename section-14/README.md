@@ -67,3 +67,13 @@ ALTER COLUMN age SET NOT NULL;
 ```
 
 This will ensure that the `age` column does not contain any NULL values.
+
+Or, we can update the existing rows to set a non-NULL value for the column.
+
+```sql
+UPDATE users
+SET age = 0
+WHERE age IS NULL;
+```
+
+This will update any rows in the `users` table where the `age` column is NULL and set the value to `0`.
