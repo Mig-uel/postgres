@@ -110,3 +110,36 @@ ALTER COLUMN age DROP DEFAULT;
 ```
 
 This will remove the default value from the `age` column in the `users` table.
+
+## Applying a Unique Constraint
+
+A **unique constraint** is used to ensure that the data in a column is unique across all rows in a table. This can be done by adding the `UNIQUE` constraint to the column definition when creating a table.
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    age INT NOT NULL
+);
+```
+
+In this example, the `email` column is defined with the `UNIQUE` constraint, which means that the data in this column must be unique across all rows in the `users` table.
+
+We can also add a `UNIQUE` constraint to an existing column using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+ADD CONSTRAINT unique_email UNIQUE (email);
+```
+
+This will add a `UNIQUE` constraint to the `email` column in the `users` table, ensuring that the data in this column is unique across all rows.
+
+We can also remove a `UNIQUE` constraint from a column using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE users
+DROP CONSTRAINT unique_email;
+```
+
+This will remove the `UNIQUE` constraint from the `email` column in the `users` table.
