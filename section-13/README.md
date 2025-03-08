@@ -98,3 +98,47 @@ Examples:
   - false, no, off, 0, f, n
 - NULL
   - NULL
+
+## Date and Time Data Types
+
+- `date`: A date value (YYYY-MM-DD).
+- `time`: A time value (HH:MM:SS).
+- `timestamp`: A date and time value (YYYY-MM-DD HH:MM:SS).
+- `timestamptz`: A timestamp with time zone value.
+- `interval`: A time interval.
+- `time with time zone`: A time value with time zone.
+- `timestamp with time zone`: A timestamp with time zone value.
+- `timetz`: An alias for `time with time zone`.
+- `timestamptz`: An alias for `timestamp with time zone`.
+
+<br/>
+
+| Date              | Conversion       |
+| ----------------- | ---------------- |
+| 1980-11-20        | 20 November 1980 |
+| Nov-20-1980       | 20 November 1980 |
+| 20-Nov-1980       | 20 November 1980 |
+| 1980-November-20  | 20 November 1980 |
+| November 20, 1980 | 20 November 1980 |
+
+<br/>
+
+| Time     | Conversion          |
+| -------- | ------------------- |
+| 01:23 AM | 01:23, no time zone |
+| 05:23 PM | 17:23, no time zone |
+| 20:34    | 20:34, no time zone |
+
+<br/>
+
+| Time With Time Zone | Conversion  |
+| ------------------- | ----------- |
+| 01:23 AM EST        | 01:23-05:00 |
+| 05:23 PM PST        | 17:23-08:00 |
+| 05:23 PM UTC        | 17:23+00:00 |
+
+<br/>
+
+| Timestamp With Time Zone | Conversion             |
+| ------------------------ | ---------------------- |
+| Nov-20-1980 05:23 PM PST | 1980-11-20 18:23:00-07 |
