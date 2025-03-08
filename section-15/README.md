@@ -24,3 +24,8 @@ There are many tools available to help you design your schema. Some popular ones
 - [quickdatabasediagrams.com](https://www.quickdatabasediagrams.com/): A simple tool that allows you to create quick and easy database diagrams. It supports various database systems like PostgreSQL, MySQL, and SQL Server.
 - [ondras.zarovi.cz/sql/demo/](http://ondras.zarovi.cz/sql/demo/): A web-based tool that allows you to create database diagrams using a simple text-based language.
 - [Lucidchart](https://www.lucidchart.com/pages/): A cloud-based diagramming tool that allows you to create various types of diagrams, including database diagrams.
+
+## Here's the Plan
+
+![Instagram Plan](../images/instagram_plan.png)
+
