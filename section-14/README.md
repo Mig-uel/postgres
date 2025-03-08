@@ -211,3 +211,37 @@ DROP CONSTRAINT check_age;
 ```
 
 This will remove the `CHECK` constraint from the `age` column in the `users` table.
+
+## Checks on Multiple Columns
+
+A **check constraint** can also be applied to multiple columns to enforce certain conditions across those columns. This can be done by adding a `CHECK` constraint to a combination of columns when creating a table.
+
+```sql
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    est_delivery TIMESTAMP NOT NULL,
+    CHECK (created_at < est_delivery)
+);
+```
+
+In this example, the `CHECK` constraint ensures that the `created_at` timestamp is less than the `est_delivery` timestamp for each row in the `orders` table.
+
+We can also add a multi-column `CHECK` constraint to an existing table using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE orders
+ADD CONSTRAINT check_delivery CHECK (created_at < est_delivery);
+```
+
+This will add a multi-column `CHECK` constraint to the `created_at` and `est_delivery` columns in the `orders` table, ensuring that the `created_at` timestamp is less than the `est_delivery` timestamp for each row.
+
+We can also remove a multi-column `CHECK` constraint from a table using the `ALTER TABLE` statement.
+
+```sql
+ALTER TABLE orders
+DROP CONSTRAINT check_delivery;
+```
+
+This will remove the multi-column `CHECK` constraint from the `created_at` and `est_delivery` columns in the `orders` table.
