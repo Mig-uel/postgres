@@ -49,3 +49,21 @@ ALTER COLUMN age DROP NOT NULL;
 ```
 
 This will allow the `age` column in the `users` table to contain NULL values.
+
+Sometimes, a column may already contain NULL values, and we want to add a `NOT NULL` constraint to it. In this case, we can use the `SET DEFAULT` clause to provide a default value for the column.
+
+```sql
+ALTER TABLE users
+ALTER COLUMN age SET DEFAULT 0;
+```
+
+This will set the default value of the `age` column to `0` for any existing rows that contain NULL values.
+
+We can then add the `NOT NULL` constraint to the column.
+
+```sql
+ALTER TABLE users
+ALTER COLUMN age SET NOT NULL;
+```
+
+This will ensure that the `age` column does not contain any NULL values.
