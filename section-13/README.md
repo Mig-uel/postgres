@@ -142,3 +142,28 @@ Examples:
 | Timestamp With Time Zone | Conversion             |
 | ------------------------ | ---------------------- |
 | Nov-20-1980 05:23 PM PST | 1980-11-20 18:23:00-07 |
+
+## Intervals
+
+Intervals are a way to store a period of time in Postgres.
+
+- `interval`: A time interval.
+- `1 day`: 1 day
+- `1 D`: 1 day
+- `1 D 1 M 1 S`: 1 day, 1 month, 1 second
+
+We can do numeric operations on intervals.
+
+```sql
+SELECT '1 day'::interval + '1 hour'::interval;
+```
+
+This will return `1 day 01:00:00`.
+
+We can also do date operations on intervals.
+
+```sql
+SELECT CURRENT_DATE + '1 day'::interval;
+```
+
+This will return the date one day from today.
