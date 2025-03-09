@@ -128,3 +128,35 @@ CREATE TABLE likes (
 - This will require your app to figure out the meaning of each like.
 - Can't use foreign key columns - 'liked_id' is just a plain integer.
 - Not recommended, but you'll see it in some applications.
+
+## Polymorphic Associations Alternative Implementation
+
+**Second Solution**: Using Separate Columns for Each Type
+
+Instead of using a polymorphic association, we can create separate columns for each type of object that can be liked. This approach is more straightforward and easier to work with, but it requires adding a new column for each type of object. Each column will be a foreign key to the corresponding table.
+
+```sql
+CREATE TABLE likes (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  post_id INT,
+  comment_id INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+We might want to add in validation to ensure that either `post_id` or `comment_id` exists in their respective tables. This can be done using a trigger or a check constraint.
+
+```sql
+ALTER TABLE likes
+ADD CONSTRAINT post_or_comment_exists
+CHECK (COALESCE(post_id)::BOOLEAN::INTEGER, 0) + (COALESCE(comment_id)::BOOLEAN::INTEGER, 0) = 1;
+```
+
+This constraint ensures that either `post_id` or `comment_id` is not null, but not both. It's a simple way to enforce the relationship between the `likes` table and the `posts` and `comments` tables.
+
+**COALESCE Function**: Returns the first non-null value in the list of arguments.
+
+```sql
+SELECT COALESCE(NULL, 1, 2, 3); -- Returns 1
+```
