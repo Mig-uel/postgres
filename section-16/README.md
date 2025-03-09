@@ -1,5 +1,10 @@
 # How to Build a 'Like' System
 
+<p align="center">
+  <img src="../images/post_likes.png" alt="Post Likes" width="400px" />
+  <img src="../images/comment_likes.png" alt="Comment Likes" width="400px" />
+</p>
+
 ## Requirements of a 'Like' System
 
 **Rules of 'Likes'**:
