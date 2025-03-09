@@ -145,6 +145,9 @@ CREATE TABLE likes (
 );
 ```
 
+- Each possible type of relation gets its own FK column.
+- We'd still want to make sure either `post_id` or `comment_id` is not null.
+
 We might want to add in validation to ensure that either `post_id` or `comment_id` exists in their respective tables. This can be done using a trigger or a check constraint.
 
 ```sql
