@@ -163,3 +163,33 @@ This constraint ensures that either `post_id` or `comment_id` is not null, but n
 ```sql
 SELECT COALESCE(NULL, 1, 2, 3); -- Returns 1
 ```
+
+## The Simplest Solution
+
+**Third Solution**: Separate Tables for Each Type
+
+The simplest solution is to create separate tables for each type of object that can be liked. This approach is the most straightforward and easiest to understand, but it requires creating multiple tables.
+
+```sql
+CREATE TABLE post_likes (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (user_id, post_id)
+);
+
+CREATE TABLE comment_likes (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  comment_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (user_id, comment_id)
+);
+
+-- And so on for other types of objects
+```
+
+- Each type of like gets its own table.
+- Still want to write queries tha that will count likes across all types? You can use a `UNION` or a View.
+
