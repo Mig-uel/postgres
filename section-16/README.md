@@ -85,3 +85,46 @@ Now, the `reactions` table can store different types of reactions (e.g., 'like,'
 This design allows us to build a more flexible reaction system that can handle various types of reactions beyond just 'likes.'
 
 Most likely, the set of reactions will be limited and predefined, so PostgreSQL's `ENUM` type could be used instead of `VARCHAR(255)` for the `reaction` column.
+
+## Polymorphic Associations
+
+If we want to allow something besides a post to be liked (e.g., a comment), we can use a polymorphic association. This involves creating a `likeable_type` and `likeable_id` column in the `likes` table to store the type and ID of the object being liked.
+
+```sql
+CREATE TABLE likes (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  likeable_id INT NOT NULL,
+  likeable_type VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (user_id, likeable_id, likeable_type)
+);
+```
+
+Now, we can like any object by specifying its type and ID in the `likeable_type` and `likeable_id` columns. This allows us to build a 'like' system that can be applied to multiple types of objects in our application.
+
+<hr>
+
+**First Solution**: Creating a Polymorphic Association
+
+Polymorphic associations are a way to associate a model with multiple other models using a single association. In this case, we want to create a `Like` model that can be associated with multiple other models (e.g., `Post`, `Comment`).
+
+They are usually not recommended in relational databases because they can lead to complex queries and performance issues. However, in some cases, they might be the best solution to achieve the desired functionality.
+
+First, we change the 'likes' table to include a `liked_id` instead of a `post_id` and a `liked_type` column to store the type of the liked object.
+
+```sql
+CREATE TABLE likes (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  liked_id INT NOT NULL,
+  liked_type VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (user_id, liked_id, liked_type)
+);
+```
+
+- A like can be a 'post' or a 'comment' like.
+- This will require your app to figure out the meaning of each like.
+- Can't use foreign key columns - 'liked_id' is just a plain integer.
+- Not recommended, but you'll see it in some applications.
