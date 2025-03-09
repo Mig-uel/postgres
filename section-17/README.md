@@ -16,3 +16,7 @@ In this section, we will add a few more features around posts to make our applic
 3. **Location Tagging**: Users can tag a location in their posts. This will allow users to see posts from a specific location and explore new places.
 
 - Posts must have a `longitude` and `latitude` field to store the location information.
+
+4. **Captions**: Users can add captions to their posts to provide more context or information about the post.
+
+- Captions can be up to `n` characters long.
