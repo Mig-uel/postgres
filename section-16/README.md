@@ -218,3 +218,15 @@ This way, we can maintain the flexibility of polymorphic associations while stil
 With this approach, you can easily see who liked a post or a comment, how many likes a post or a comment has, you can get all of the likes for a user, and you can easily add new types of objects that can be liked.
 
 And, if you delete the like from the `likes` table, you can cascade the delete to the specific type table to remove the like from there as well.
+
+## So Which Solution Should You Choose?
+
+The choice of which solution to use depends on the specific requirements of your application. Here are some factors to consider:
+
+- **Polymorphic Associations**: Use when you need to associate a model with multiple other models and the number of models is limited.
+- **Separate Columns for Each Type**: Use when you have a small number of types and want a simple solution.
+- **Separate Tables for Each Type**: Use when you have a large number of types and want a straightforward solution.
+
+Each solution has its pros and cons, so choose the one that best fits your application's needs and complexity.
+
+We are going to use the second solution, which is the most straightforward and easiest to work with for our application.
