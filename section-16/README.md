@@ -64,3 +64,24 @@ WHERE likes.post_id = 1;
 ```
 
 This design allows us to easily implement the 'like' system and fulfills all the requirements we set out at the beginning.
+
+## Making a Reaction System Instead
+
+If we want to expand the system to include more than just 'likes,' we can modify the `likes` table to include a `reaction` column:
+
+```sql
+CREATE TABLE reactions (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  reaction VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (user_id, post_id, reaction)
+);
+```
+
+Now, the `reactions` table can store different types of reactions (e.g., 'like,' 'dislike,' 'love,' 'angry') for each post. The unique constraint on `user_id`, `post_id`, and `reaction` ensures that a user can only react to a post once with a specific reaction.
+
+This design allows us to build a more flexible reaction system that can handle various types of reactions beyond just 'likes.'
+
+Most likely, the set of reactions will be limited and predefined, so PostgreSQL's `ENUM` type could be used instead of `VARCHAR(255)` for the `reaction` column.
