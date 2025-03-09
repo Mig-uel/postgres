@@ -35,3 +35,16 @@ ADD COLUMN caption VARCHAR(240),
 ADD COLUMN lat REAL,
 ADD COLUMN lng REAL;
 ```
+
+## Photo Mentions vs. Caption Mentions
+
+When a user mentions another user in a post, they can either mention them in the photo itself (by tagging them in the photo) or in the caption of the post. We need to handle these two types of mentions differently:
+
+1. **Photo Mentions**: When a user tags another user in the photo, we need to store the tagged user's ID along with the coordinates of the tag in the photo. This will allow us to display the tagged users when the photo is viewed.
+
+2. **Caption Mentions**: When a user mentions another user in the caption, we need to store the mentioned user's ID in the post. This will allow us to notify the mentioned user about the mention.
+
+- In the case of caption mentions, the mentioned user text doesn't necessarily mean that we need to store something in the database.
+- The mobile app could (and probably) should handle highlighting the mentioned user in the caption text.
+
+We would need to store the mentioned user if we want to notify them about the mention, need to show the mention in the user's profile, need to show a list of posts where the user was mentioned, etc.
