@@ -20,3 +20,18 @@ In this section, we will add a few more features around posts to make our applic
 4. **Captions**: Users can add captions to their posts to provide more context or information about the post.
 
 - Captions can be up to `n` characters long.
+
+## Adding Captions and Location Tagging
+
+Let's start by adding the `caption` and location tagging features to our posts. We will modify the `posts` table to include these fields:
+
+- `caption`: A VARCHAR(240) field to store the caption for the post.
+- `lat`: A real field to store the latitude of the location.
+- `lng`: A real field to store the longitude of the location.
+
+```sql
+ALTER TABLE posts
+ADD COLUMN caption VARCHAR(240),
+ADD COLUMN lat REAL,
+ADD COLUMN lng REAL;
+```
