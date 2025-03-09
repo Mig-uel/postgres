@@ -193,3 +193,28 @@ CREATE TABLE comment_likes (
 - Each type of like gets its own table.
 - Still want to write queries tha that will count likes across all types? You can use a `UNION` or a View.
 
+## Solution for Polymorphic Associations
+
+We can create a `likes` table in addition to specific tables for each type of object that can be liked. These tables may be created:
+
+- `likes` table: Contains the common columns for all likes.
+- `post_likes` table: Contains the specific columns for post likes.
+- `comment_likes` table: Contains the specific columns for comment likes.
+
+The rule is that when a like is created, a row is inserted into the `likes` table and the corresponding type-specific table (`post_likes`, `comment_likes`).
+
+For example, a user likes a post:
+
+```sql
+INSERT INTO likes (user_id, resource)
+VALUES (1, 'post');
+
+INSERT INTO post_likes (user_id, post_id, like_id)
+VALUES (1, <some post id>, <like id from likes table>);
+```
+
+This way, we can maintain the flexibility of polymorphic associations while still having the benefits of separate tables for each type of object.
+
+With this approach, you can easily see who liked a post or a comment, how many likes a post or a comment has, you can get all of the likes for a user, and you can easily add new types of objects that can be liked.
+
+And, if you delete the like from the `likes` table, you can cascade the delete to the specific type table to remove the like from there as well.
