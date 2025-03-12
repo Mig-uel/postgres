@@ -51,3 +51,25 @@ A heap file is divided into many different blocks or pages. Each page stores a f
 Each page has a fixed size, typically 8KB. This size can be changed in the configuration settings of PostgreSQL.
 
 Why are there blocks at all? Why not just store all the data in one big heap?
+
+## Block Data Layout
+
+Let's say we are looking at heap file 22445. This file is divided into blocks, and each block is given a unique block number. The block number starts at 0 and goes up to the total number of blocks in the file. Remember, each block is 8KB in size.
+
+```
+Block 0: 8KB
+Block 1: 8KB
+Block 2: 8KB
+Block 3: 8KB
+```
+
+Each block contains a header and a data section. The header contains metadata about the block, such as the block number and the number of tuples stored in the block. The data section contains the actual tuples or rows.
+
+```
+Block 0: Header (metadata) + Data (tuples)
+Block 1: Header (metadata) + Data (tuples)
+Block 2: Header (metadata) + Data (tuples)
+Block 3: Header (metadata) + Data (tuples)
+```
+
+When we insert a new row into a table, PostgreSQL will find an empty slot in one of the blocks and insert the row there. If there is no space in the current block, PostgreSQL will allocate a new block and insert the row there.
