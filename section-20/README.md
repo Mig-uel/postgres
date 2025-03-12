@@ -49,3 +49,30 @@ This query creates a table called `users` with the following columns:
 - `created_at` and `updated_at`: columns that store the timestamp of when the row was created and last updated.
 - `username`, `bio`, `avatar`, `phone`, `email`, `password`, and `status`: columns that store user information.
 - `CHECK(COALESCE(phone, email) IS NOT NULL)`: a check constraint that ensures either the `phone` or `email` column has a value.
+
+## Creating the Posts Table
+
+```sql
+CREATE TABLE posts (
+	id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	url VARCHAR(200) NOT NULL,
+	caption VARCHAR(240),
+	lat REAL CHECK(lat IS NULL OR (lat >= -90 AND lat <- 90)),
+	lng REAL CHECK(lng is NULL OR (lng >= -180 AND lng <= 180)),
+
+	user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+	CHECK((lat IS NULL) = (lng IS NULL))
+);
+```
+
+This query creates a table called `posts` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at` and `updated_at`: columns that store the timestamp of when the row was created and last updated.
+- `url`: a column that stores the URL of the post.
+- `caption`: a column that stores the caption of the post.
+- `lat` and `lng`: columns that store the latitude and longitude of the post location.
+- `user_id`: a foreign key column that references the `id` column in the `users` table.
+- `CHECK((lat IS NULL) = (lng IS NULL))`: a check constraint that ensures either both `lat` and `lng` are provided or both are NULL.
