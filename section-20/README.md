@@ -97,3 +97,34 @@ This query creates a table called `comments` with the following columns:
 - `contents`: a column that stores the contents of the comment.
 - `user_id`: a foreign key column that references the `id` column in the `users` table.
 - `post_id`: a foreign key column that references the `id` column in the `posts` table.
+
+## Creating the Likes Table
+
+```sql
+CREATE TABLE likes (
+	id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+
+	post_id INT REFERENCES posts(id) ON DELETE CASCADE,
+	comment_id INT REFERENCES comments(id) ON DELETE CASCADE,
+
+	CHECK(
+		COALESCE((post_id)::BOOLEAN::INTEGER, 0)
+		+
+		COALESCE((comment_id)::BOOLEAN::INTEGER, 0)
+		= 1
+	),
+	UNIQUE(user_id, post_id, comment_id)
+);
+```
+
+This query creates a table called `likes` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at`: a column that stores the timestamp of when the row was created.
+- `user_id`: a foreign key column that references the `id` column in the `users` table.
+- `post_id`: a foreign key column that references the `id` column in the `posts` table.
+- `comment_id`: a foreign key column that references the `id` column in the `comments` table.
+- `CHECK(COALESCE((post_id)::BOOLEAN::INTEGER, 0) + COALESCE((comment_id)::BOOLEAN::INTEGER, 0) = 1)`: a check constraint that ensures either the `post_id` or `comment_id` is provided, but not both.
+- `UNIQUE(user_id, post_id, comment_id)`: a unique constraint that ensures a user can only like a post or comment once.
