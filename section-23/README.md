@@ -23,3 +23,23 @@ To create an index, first we have to:
 - Sort the block/index in some meaningful way (alphabetical for text, value for numbers, etc).
 - Organize into a tree structure (B-tree) for fast lookups. Evenly distribute values in the leaf nodes, in order left to right.
 - Add helpers to the root node to quickly find the correct leaf node.
+
+## Creating an Index
+
+To create an index on a column, you can use the `CREATE INDEX` statement. Here's an example:
+
+```sql
+CREATE INDEX username_index ON table_name (column_name);
+```
+
+This statement creates an index called `username_index` on the `column_name` column in the `table_name` table.
+
+The database will create a separate data structure that stores the values in the `column_name` column in sorted order. This allows the database to quickly find rows that match a query based on the values in that column.
+
+To drop an index, you can use the `DROP INDEX` statement. Here's an example:
+
+```sql
+DROP INDEX username_index;
+```
+
+This statement drops the `username_index` index from the table.
