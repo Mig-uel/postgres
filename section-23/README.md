@@ -77,3 +77,15 @@ There are several types of indexes you can create in PostgreSQL:
 - GIN indexes: Generalized Inverted Index (GIN) indexes are used for indexing arrays and full-text search data.
 
 - BRIN indexes: Block Range INdexes (BRIN) indexes are used for very large tables where the data is sorted in some way.
+
+## Automatically Generated Indexes
+
+When you create a primary key or unique constraint on a table, PostgreSQL automatically creates an index for you. This index allows the database to quickly enforce the constraint by checking for duplicate values in the column.
+
+For example, if you create a primary key constraint on the `id` column in a table, PostgreSQL will automatically create an index on the `id` column.
+
+- Postgres automatically creates an index for the primary key of each table.
+- Postgres automatically creates an index for each unique constraint.
+- These don't get listed under indexes, but they are there.
+
+You should never create an index on a column that has a unique constraint or primary key constraint, as this will create a redundant index.
