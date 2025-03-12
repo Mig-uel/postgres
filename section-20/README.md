@@ -128,3 +128,50 @@ This query creates a table called `likes` with the following columns:
 - `comment_id`: a foreign key column that references the `id` column in the `comments` table.
 - `CHECK(COALESCE((post_id)::BOOLEAN::INTEGER, 0) + COALESCE((comment_id)::BOOLEAN::INTEGER, 0) = 1)`: a check constraint that ensures either the `post_id` or `comment_id` is provided, but not both.
 - `UNIQUE(user_id, post_id, comment_id)`: a unique constraint that ensures a user can only like a post or comment once.
+
+## Creating the Photo Tags and Captions Tags Tables
+
+```sql
+CREATE TABLE photo_tags (
+	id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+	user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+	post_id INT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+
+	x int NOT NULL,
+	y int NOT NULL,
+
+	UNIQUE(user_id, post_id)
+);
+```
+
+This query creates a table called `photo_tags` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at` and `updated_at`: columns that store the timestamp of when the row was created and last updated.
+- `user_id`: a foreign key column that references the `id` column in the `users` table.
+- `post_id`: a foreign key column that references the `id` column in the `posts` table.
+- `x` and `y`: columns that store the coordinates of the tag on the photo.
+- `UNIQUE(user_id, post_id)`: a unique constraint that ensures a user can only tag a post once.
+
+```sql
+CREATE TABLE caption_tags (
+	id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+	user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+	post_id INT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+
+	UNIQUE(user_id, post_id)
+);
+```
+
+This query creates a table called `caption_tags` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at`: a column that stores the timestamp of when the row was created.
+- `user_id`: a foreign key column that references the `id` column in the `users` table.
+- `post_id`: a foreign key column that references the `id` column in the `posts` table.
+- `UNIQUE(user_id, post_id)`: a unique constraint that ensures a user can only tag a post once.
