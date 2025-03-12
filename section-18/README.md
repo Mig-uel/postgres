@@ -56,3 +56,19 @@ CREATE TABLE hashtags_posts (
 ```
 
 In the `hashtags_posts` table, the `post_id` column references the `id` column in the `posts` table, and the `hashtag_id` column references the `id` column in the `hashtags` table. We use foreign key constraints to ensure that the relationships are valid and that we can maintain data integrity.
+
+## Revisit to Users Table
+
+## Why We Aren't Storing the Number of Followers or Posts in the Users Table
+
+In the previous section, we discussed the design of the `users` table and its columns. You might have noticed that we didn't include columns to store the number of followers or posts for each user. This design decision was intentional, and here's why:
+
+- The number of posts a user has made can be calculated by counting the number of posts associated with that user in the `posts` table. Storing this information in the `users` table would lead to data redundancy and potential inconsistencies.
+
+- The number of followers a user has can be calculated by counting the number of relationships in the `followers` table where the `followed_id` matches the user's `id`. Storing this information in the `users` table would also lead to data redundancy and potential inconsistencies.
+
+We call this data 'derived data' because it can be derived or calculated from other tables in the database. Storing derived data can lead to data anomalies, such as inconsistencies between the stored value and the actual value in the related tables.
+
+This approach "normalization," where we avoid storing redundant data that can be derived from other tables. By following this principle, we ensure that the database remains efficient, consistent, and easy to maintain.
+
+By avoiding redundant data in the `users` table, we ensure that the database remains normalized and that data integrity is maintained. This design choice follows the principles of database normalization and helps prevent data anomalies that can occur when data is duplicated across tables.
