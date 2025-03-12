@@ -61,3 +61,19 @@ While indexes can speed up queries, they also have some downsides:
 - Indexes take up space on disk. If you have a large table with many indexes, this can use up a lot of disk space.
 - Indexes can slow down write operations. When you insert, update, or delete rows in a table, the database has to update the indexes as well. This can slow down write operations, especially if you have many indexes on a table.
 - Indexes might not be used. The database optimizer decides whether to use an index based on the query plan. If the optimizer decides that using an index would be slower than doing a full table scan, it won't use the index.
+
+## Index Types
+
+There are several types of indexes you can create in PostgreSQL:
+
+- B-tree indexes: The default index type in PostgreSQL. B-tree indexes are balanced tree structures that allow the database to quickly find rows based on the values in one or more columns.
+
+- Hash indexes: Hash indexes are used for equality comparisons. They are faster than B-tree indexes for equality comparisons but don't support range queries.
+
+- GiST indexes: Generalized Search Tree (GiST) indexes are used for indexing complex data types like geometric data, full-text search, and arrays.
+
+- SP-GiST indexes: Space-Partitioned Generalized Search Tree (SP-GiST) indexes are used for indexing data that can be partitioned into non-overlapping regions.
+
+- GIN indexes: Generalized Inverted Index (GIN) indexes are used for indexing arrays and full-text search data.
+
+- BRIN indexes: Block Range INdexes (BRIN) indexes are used for very large tables where the data is sorted in some way.
