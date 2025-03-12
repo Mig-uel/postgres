@@ -76,3 +76,24 @@ This query creates a table called `posts` with the following columns:
 - `lat` and `lng`: columns that store the latitude and longitude of the post location.
 - `user_id`: a foreign key column that references the `id` column in the `users` table.
 - `CHECK((lat IS NULL) = (lng IS NULL))`: a check constraint that ensures either both `lat` and `lng` are provided or both are NULL.
+
+## Creating the Comments Table
+
+```sql
+CREATE TABLE comments (
+	id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	contents VARCHAR(240) NOT NULL,
+	user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+	post_id INT NOT NULL REFERENCES posts(id) ON DELETE CASCADE
+);
+```
+
+This query creates a table called `comments` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at` and `updated_at`: columns that store the timestamp of when the row was created and last updated.
+- `contents`: a column that stores the contents of the comment.
+- `user_id`: a foreign key column that references the `id` column in the `users` table.
+- `post_id`: a foreign key column that references the `id` column in the `posts` table.
