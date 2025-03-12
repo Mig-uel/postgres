@@ -53,3 +53,11 @@ EXPLAIN SELECT * FROM table_name WHERE column_name = 'value';
 ```
 
 This statement shows you the query plan that the database will use to execute the query. If the database is using an index, you'll see `Index Scan` in the query plan. If the database is doing a full table scan, you'll see `Seq Scan` in the query plan.
+
+## Downsides of Indexes
+
+While indexes can speed up queries, they also have some downsides:
+
+- Indexes take up space on disk. If you have a large table with many indexes, this can use up a lot of disk space.
+- Indexes can slow down write operations. When you insert, update, or delete rows in a table, the database has to update the indexes as well. This can slow down write operations, especially if you have many indexes on a table.
+- Indexes might not be used. The database optimizer decides whether to use an index based on the query plan. If the optimizer decides that using an index would be slower than doing a full table scan, it won't use the index.
