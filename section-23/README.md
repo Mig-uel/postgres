@@ -43,3 +43,13 @@ DROP INDEX username_index;
 ```
 
 This statement drops the `username_index` index from the table.
+
+## Benchmarking Indexes
+
+To see the performance difference between using an index and not using an index, you can use the `EXPLAIN` statement. Here's an example:
+
+```sql
+EXPLAIN SELECT * FROM table_name WHERE column_name = 'value';
+```
+
+This statement shows you the query plan that the database will use to execute the query. If the database is using an index, you'll see `Index Scan` in the query plan. If the database is doing a full table scan, you'll see `Seq Scan` in the query plan.
