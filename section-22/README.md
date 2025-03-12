@@ -33,3 +33,21 @@ SELECT * FROM pg_class;
 ```
 
 This command will show all tables in the current database.
+
+## Heaps, Blocks, and Tuples
+
+- **Heaps**: The main storage structure in PostgreSQL is called a **heap**.
+- **Blocks**: Data in a heap is stored in **blocks**.
+- **Tuples**: Each row in a table is called a **tuple**.
+
+<hr>
+
+**Heap or Heap File**: A file that contains all the data (rows) of our table.
+**Tuple or Item**: A single row from our table.
+**Block or Page**: The heap file is divided into many different 'blocks' or 'pages'. Each page/block stores a fixed number of tuples/items/rows.
+
+A heap file is divided into many different blocks or pages. Each page stores a fixed number of tuples or rows. When we insert a new row into a table, PostgreSQL will find an empty slot in one of the pages and insert the row there.
+
+Each page has a fixed size, typically 8KB. This size can be changed in the configuration settings of PostgreSQL.
+
+Why are there blocks at all? Why not just store all the data in one big heap?
