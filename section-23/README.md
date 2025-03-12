@@ -11,3 +11,15 @@ Every time we load a table into memory, we have to read the entire table from di
 An index is a data structure that allows the database to quickly look up rows in a table based on the values in one or more columns. When you create an index on a column, the database creates a separate data structure that stores the values in that column in sorted order. This allows the database to quickly find rows that match a query based on the values in that column.
 
 - A data structure that efficiently tells use what block/index a record is stored in.
+
+## How Indexes Work
+
+When you create an index on a column, the database creates a separate data structure that stores the values in that column in sorted order. This allows the database to quickly find rows that match a query based on the values in that column.
+
+To create an index, first we have to:
+
+- Which column do we want to have very fast lookups on?
+- Extract only the property we want to do fast lookups on and the block/index for each record.
+- Sort the block/index in some meaningful way (alphabetical for text, value for numbers, etc).
+- Organize into a tree structure (B-tree) for fast lookups. Evenly distribute values in the leaf nodes, in order left to right.
+- Add helpers to the root node to quickly find the correct leaf node.
