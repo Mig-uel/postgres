@@ -1,5 +1,7 @@
 # How to Build a 'Hashtag' System
 
+![Hashtags](../images/hashtags.png)
+
 In this section, we will implement a hashtag system for our social media application. Hashtags are a popular way to categorize and discover content on social media platforms. Users can add hashtags to their posts to make them more discoverable and to join conversations around specific topics.
 
 ## What is a Hashtag?
