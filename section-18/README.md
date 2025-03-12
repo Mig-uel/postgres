@@ -19,3 +19,40 @@ Seeing hashtags used in posts, comments, and user bios might make you think that
 We only have to model resources in the database if we expect to query them directly. Do we expect to run a query like "Find all posts that contain a specific hashtag"? If so, we need to model the relationship between posts and hashtags. Otherwise, we can use a simple text field to store hashtags in the post table.
 
 On Instagram, we can search for hashtags and view posts that contain them. This implies that posts that contain hashtags are searchable. In this case, we need to model the relationship between posts and hashtags. However, hashtags in comments or user bios are not searchable, so we don't need to model them.
+
+## Tables for Hashtags
+
+To implement a hashtag system, we need to create a table to store hashtags and a table to store the relationship between posts and hashtags. Here's how we can design these tables:
+
+1. **hashtags Table**: This table stores the hashtags used in posts. It has the following columns:
+
+   - `id`: A unique identifier for the hashtag.
+   - `title`: The name of the hashtag (e.g., `#programming`, `#webdev`).
+   - `created_at`: The timestamp when the hashtag was created.
+
+2. **hashtags_posts Table**: This table stores the relationship between posts and hashtags. It has the following columns:
+
+   - `id`: A unique identifier for the relationship.
+   - `post_id`: The ID of the post that contains the hashtag.
+   - `hashtag_id`: The ID of the hashtag used in the post.
+   - `created_at`: The timestamp when the relationship was created.
+
+By creating these tables, we can associate hashtags with posts and search for posts that contain specific hashtags.
+
+```sql
+CREATE TABLE hashtags (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE hashtags_posts (
+    id SERIAL PRIMARY KEY,
+    post_id INT NOT NULL,
+    hashtag_id INT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
+);
+```
+
+In the `hashtags_posts` table, the `post_id` column references the `id` column in the `posts` table, and the `hashtag_id` column references the `id` column in the `hashtags` table. We use foreign key constraints to ensure that the relationships are valid and that we can maintain data integrity.
