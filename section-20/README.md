@@ -175,3 +175,60 @@ This query creates a table called `caption_tags` with the following columns:
 - `user_id`: a foreign key column that references the `id` column in the `users` table.
 - `post_id`: a foreign key column that references the `id` column in the `posts` table.
 - `UNIQUE(user_id, post_id)`: a unique constraint that ensures a user can only tag a post once.
+
+## Creating Hashtags, Hashtag Posts, and Followers Tables
+
+```sql
+CREATE TABLE hashtags (
+	id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	title VARCHAR(20) NOT NULL UNIQUE
+);
+```
+
+This query creates a table called `hashtags` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at`: a column that stores the timestamp of when the row was created.
+- `title`: a column that stores the title of the hashtag.
+
+```sql
+CREATE TABLE hashtags_posts (
+	id SERIAL PRIMARY KEY,
+
+	hashtag_id INT NOT NULL REFERENCES hashtags(id) ON DELETE CASCADE,
+	post_id INT NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+
+	UNIQUE(hashtag_id, post_id)
+);
+```
+
+This query creates a table called `hashtags_posts` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `hashtag_id`: a foreign key column that references the `id` column in the `hashtags` table.
+- `post_id`: a foreign key column that references the `id` column in the `posts` table.
+- `UNIQUE(hashtag_id, post_id)`: a unique constraint that ensures a post can only have a hashtag once.
+
+```sql
+CREATE TABLE followers (
+    id SERIAL PRIMARY KEY,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+    leader_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    follower_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+
+    UNIQUE (leader_id, follower_id),
+    CHECK (leader_id <> follower_id)
+);
+
+```
+
+This query creates a table called `followers` with the following columns:
+
+- `id`: a serial column that auto-increments and serves as the primary key.
+- `created_at`: a column that stores the timestamp of when the row was created.
+- `leader_id`: a foreign key column that references the `id` column in the `users` table.
+- `follower_id`: a foreign key column that references the `id` column in the `users` table.
+- `UNIQUE(leader_id, follower_id)`: a unique constraint that ensures a user can only follow another user once.
+- `CHECK(leader_id <> follower_id)`: a check constraint that ensures a user cannot follow themselves.
