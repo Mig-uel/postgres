@@ -32,3 +32,6 @@ Here are the main steps in the query processing pipeline:
 - **Query Execution**: The engine performs the operations specified in the plan (e.g., filter, join, aggregate).
 - **Result Generation**: The engine produces the final result of the query based on the plan.
 - Execution is the final step where the database system actually retrieves the data and processes it to produce the result.
+
+By understanding the query processing pipeline, we can identify the stages where performance issues may arise and optimize our queries accordingly.
+
