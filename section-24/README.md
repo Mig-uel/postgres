@@ -35,3 +35,24 @@ Here are the main steps in the query processing pipeline:
 
 By understanding the query processing pipeline, we can identify the stages where performance issues may arise and optimize our queries accordingly.
 
+## Explain and Explain Analyze
+
+In PostgreSQL, we can use the `EXPLAIN` command to see the execution plan for a query. This plan shows the steps that the database system will take to execute the query.
+
+**EXPLAIN**: The `EXPLAIN` command displays the execution plan for a query without actually executing it. This allows us to see how the database system will process the query.
+
+```sql
+EXPLAIN SELECT * FROM users WHERE age > 30;
+```
+
+The output of the `EXPLAIN` command shows the steps that the database system will take to execute the query. Each step in the plan corresponds to an operation such as scanning a table, applying a filter, or performing a join.
+
+**EXPLAIN ANALYZE**: The `EXPLAIN ANALYZE` command displays the execution plan for a query and actually executes it. This allows us to see the actual time taken to execute each step in the plan.
+
+```sql
+EXPLAIN ANALYZE SELECT * FROM users WHERE age > 30;
+```
+
+The output of the `EXPLAIN ANALYZE` command includes the execution time for each step in the plan. This can help us identify performance bottlenecks and optimize our queries for better performance.
+
+These are for benchmarking and evaluating queries, not for use in production. They are useful for understanding how the database system processes queries and for identifying performance issues.
