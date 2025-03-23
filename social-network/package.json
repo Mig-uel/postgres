@@ -9,5 +9,8 @@
   },
   "scripts": {
     "migrate": "node-pg-migrate"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
   }
 }
