@@ -60,3 +60,35 @@ CREATE VIEW tags as (
 - The `UNION ALL` operator combines the results of the two `SELECT` statements, allowing us to retrieve all rows from both tables.
 - The `type` column is added to indicate the source of each row (either `photo_tags` or `caption_tags`).
 - The view can be queried like a regular table, allowing us to retrieve data from the combined result set.
+
+## When to Use Views
+
+Views are useful when we want to simplify complex queries, hide the complexity of the underlying data structure, or provide a consistent interface to the data. They can also be used to enforce security by restricting access to certain columns or rows in a table.
+
+**We can use views to show the 10 most recent posts AND**:
+
+- Show the users who created the 10 most recent posts.
+- Show the number of likes each of the 10 most recent posts received.
+- Show the users who were tagged in the 10 most recent posts.
+- Show the hashtags used by the 10 most recent posts.
+- Show the average number of hashtags in the 10 most recent posts.
+- Show the total number of comments the 10 most recent posts received.
+
+```sql
+CREATE VIEW recent_posts AS (
+  SELECT *
+  FROM posts
+  ORDER BY created_at DESC
+  LIMIT 10
+)
+```
+
+In this example, we create a view called `recent_posts` that contains the 10 most recent posts from the `posts` table. We can then use this view to retrieve data about the most recent posts without having to repeat the query each time.
+
+```sql
+SELECT username
+FROM recent_posts
+JOIN users ON users.id = recent_posts.user_id
+```
+
+In this example, we use the `recent_posts` view to retrieve the usernames of the users who created the 10 most recent posts. This simplifies the query and makes it easier to read.
