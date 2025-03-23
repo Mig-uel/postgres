@@ -20,9 +20,66 @@ WITH RECURSIVE countdown(val) as ( -- Define the CTE
     UNION ALL -- Combine the results of the anchor member and recursive member
     SELECT val - 1 FROM countdown WHERE val > 1 -- Recursive member (recursive case)
 )
+SELECT * FROM countdown; -- Final query to select from the CTE
 ```
 
 This example creates a recursive CTE called `countdown` that generates a countdown from 10 to 1.
 
 - The first part of the CTE (the anchor member) selects the initial value (10), and the second part (the recursive member) selects the next value by subtracting 1 from the previous value. The recursion continues until the condition `val > 1` is no longer met.
 - The result of this CTE will be a list of numbers from 10 to 1.
+
+## Recursive CTEs Step-by-Step
+
+```sql
+WITH RECURSIVE countdown(val) as (
+  SELECT 10 as val -- Initial, non-recursive query
+  UNION -- Combine the results of the initial query with the recursive query
+  SELECT val - 1 FROM countdown WHERE val > 1 -- Recursive query
+)
+```
+
+- Define the results and working table for the CTE.
+
+| Results | Working Table |
+| ------- | ------------- |
+| val     | val           |
+
+- Run the initial, non-recursive query, put the results into the results table and the working table.
+
+| Results | Working Table |
+| ------- | ------------- |
+| val     | val           |
+| 10      | 10            |
+
+- Run the recursive query replacing the table name 'countdown' with a reference to the working table.
+
+| Results | Working Table |
+| ------- | ------------- |
+| val     | val           |
+| 10      | 10            |
+|         | 9             |
+
+- If recursive statement returns some rows, append them to the results table and run the recursive query again.
+
+| Results | Working Table |
+| ------- | ------------- |
+| val     | val           |
+| 10      | 9             |
+| 9       |               |
+|         |               |
+
+- If recursive statement returns no rows, stop the recursion and return the results table.
+
+| countdown | Working Table |
+| --------- | ------------- |
+| val       | val           |
+| 10        | 1             |
+| 9         |               |
+| 8         |               |
+| 7         |               |
+| 6         |               |
+| 5         |               |
+| 4         |               |
+| 3         |               |
+| 2         |               |
+| 1         |               |
