@@ -55,3 +55,7 @@ By default, PostgreSQL runs in autocommit mode, which means that each SQL statem
 Running a bad command will cause the transaction to fail, and be put into an 'aborted' state. You must then run `ROLLBACK` to undo the changes.
 
 Losing the connection to the database will also cause the transaction to fail, and will automatically rollback the transaction.
+
+## Transaction Cleanup on Crash
+
+If a transaction is open and the server crashes, PostgreSQL will automatically roll back the transaction when it restarts. This ensures that any incomplete transactions are cleaned up and the database remains in a consistent state.
