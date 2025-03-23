@@ -92,3 +92,26 @@ JOIN users ON users.id = recent_posts.user_id
 ```
 
 In this example, we use the `recent_posts` view to retrieve the usernames of the users who created the 10 most recent posts. This simplifies the query and makes it easier to read.
+
+## Deleting and Changing Views
+
+- We can delete a view using the `DROP VIEW` statement.
+- We can change a view using the `CREATE OR REPLACE VIEW` statement.
+- We can also use the `ALTER VIEW` statement to change the definition of a view without dropping and recreating it.
+
+```sql
+CREATE OR REPLACE VIEW recent_posts AS (
+  SELECT *
+  FROM posts
+  ORDER BY created_at DESC
+  LIMIT 15
+)
+```
+
+In this example, we use the `CREATE OR REPLACE VIEW` statement to change the definition of the `recent_posts` view to include the 15 most recent posts instead of the 10 most recent posts. This allows us to update the view without having to drop and recreate it.
+
+```sql
+DROP VIEW recent_posts;
+```
+
+In this example, we delete the `recent_posts` view using the `DROP VIEW` statement. This removes the view from the database and frees up any resources associated with it.
