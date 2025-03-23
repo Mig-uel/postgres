@@ -11,3 +11,8 @@ A materialized view is to a view as a simple common table expression is to a rec
 ## Grouping by Week
 
 **For each week, show the number of likes that posts and comments received. Use the post and comment created_at date, not when the like was received.**
+
+## Reminder of Left Joins
+
+- A left join is a type of join that returns all rows from the left table and the matching rows from the right table. If there are no matches, NULL values are returned for the columns from the right table.
+- A left join is used when we want to include all rows from the left table, even if there are no matching rows in the right table.
