@@ -111,3 +111,49 @@ LIMIT 30; -- Limit the number of results to 30
 ```
 
 This query uses a recursive CTE to find suggestions for users to follow based on their connections. It starts with a specific user (user ID 1000) and recursively finds their followers and their followers' followers, up to a specified depth (in this case, 3 levels deep). The final result includes distinct user IDs and usernames of the suggested users to follow.
+
+## Walking Through the Query
+
+1. **Anchor Member:** The first part of the CTE selects the initial user (user ID 1000) and their direct followers from the `followers` table. This is the base case for the recursion.
+
+2. **Recursive Member:** The second part of the CTE selects the followers of the followers (i.e., the next level of connections) by joining the `followers` table with the `suggestions` CTE. The recursion continues until the specified depth is reached.
+
+   - The `depth` column is incremented by 1 for each level of recursion.
+   - The `WHERE depth < 3` condition limits the recursion to a maximum depth of 3 levels.
+
+3. **Final Query:** The final query selects distinct user IDs and usernames from the `suggestions` CTE, filtering out the starting user (user ID 1000) by using `WHERE depth > 1`. The results are limited to 30 entries.
+4. **Result:** The result of this query will be a list of suggested users to follow, based on their connections, excluding the starting user.
+
+<hr/>
+
+- Define the results and working table for the CTE.
+
+|           | Results Table |       |           | Working Table |       |
+| --------- | ------------- | ----- | --------- | ------------- | ----- |
+| leader_id | follower_id   | depth | leader_id | follower_id   | depth |
+
+- Run the initial, non-recursive query, put the results into the results table and the working table.
+
+```sql
+SELECT leader_id, follower_id, 1 as depth
+FROM followers
+WHERE follower_id = 1000;
+```
+
+|           | Results Table |       |           | Working Table |       |
+| --------- | ------------- | ----- | --------- | ------------- | ----- |
+| leader_id | follower_id   | depth | leader_id | follower_id   | depth |
+| 1         | 1000          | 1     | 1         | 1000          | 1     |
+
+- Run the recursive query replacing the table name 'suggestions' with a reference to the working table.
+
+```sql
+SELECT followers.leader_id, followers.follower_id, depth + 1
+FROM followers
+JOIN suggestions ON suggestions.leader_id = followers.follower_id
+WHERE depth < 3;
+```
+
+- If recursive statement returns some rows, append them to the results table and run the recursive query again.
+
+- If recursive statement returns no rows, stop the recursion and return the results table.
