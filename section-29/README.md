@@ -7,3 +7,7 @@ A view is a query that is stored in the database. A materialized view is a view 
 - a query that gets executed only at very specific times, but the results are saved and can be referenced later without having to run the query again.
 
 A materialized view is to a view as a simple common table expression is to a recursive common table expression. They are both the same thing, but one is a little bit more advanced and has a little bit more functionality.
+
+## Grouping by Week
+
+**For each week, show the number of likes that posts and comments received. Use the post and comment created_at date, not when the like was received.**
