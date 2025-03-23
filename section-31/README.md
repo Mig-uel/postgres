@@ -39,3 +39,19 @@ ALTER TABLE users DROP COLUMN phone_number;
 ```
 
 In the example above, the migration file adds a `phone_number` column to the `users` table in the **up** section and drops the column in the **down** section. This structure allows developers to apply the migration to add the column and revert the migration to remove the column if needed.
+
+## Issues Solved by Migrations
+
+Migrations solve several issues related to managing database schema changes:
+
+1. **Consistency**: Migrations provide a consistent way to define and apply database schema changes across different environments (development, staging, production). This ensures that the database schema is consistent across all environments.
+
+2. **Version Control**: Migrations are version-controlled, allowing developers to track changes to the database schema over time. This makes it easy to review, revert, and apply migrations as needed.
+
+3. **Reproducibility**: Migrations are repeatable and can be applied to any database instance to bring it to a specific state. This makes it easy to set up new environments and deploy changes to existing environments.
+
+4. **Collaboration**: Migrations enable collaboration among team members by providing a structured way to define and apply database schema changes. Team members can work on different features that require database changes without conflicts.
+
+5. **Rollback**: Migrations support rolling back changes to the database schema by reverting applied migrations. This allows developers to undo changes that were applied incorrectly or are no longer needed.
+
+By using migrations, developers can manage database schema changes more effectively and avoid common pitfalls associated with manual schema updates.
