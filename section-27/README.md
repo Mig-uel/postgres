@@ -83,3 +83,7 @@ WITH RECURSIVE countdown(val) as (
 | 3         |               |
 | 2         |               |
 | 1         |               |
+
+## Why Use Recursive CTEs?
+
+An example of a situation where you might want to use a recursive CTE is when you want to recommend a list of people to follow on a social media platform based on their connections. For example, if you have a table of users and their followers, you can use a recursive CTE to find all the followers of a specific user and their followers, and so on.
