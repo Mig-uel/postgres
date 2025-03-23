@@ -15,3 +15,27 @@ This scenario illustrates a common problem faced by developers when working with
 **Big Lesson #2**: When working with a team, we need a really easy way to tie the structure of the database to the code that uses it.
 
 A way to solve this problem is to use **schema migrations**. Schema migrations provide a structured and repeatable way to define database changes. They allow developers to define changes to the database schema in a way that can be version-controlled, applied, and rolled back easily.
+
+## Migration Files
+
+A migration file is a script that defines a set of changes to the database schema. It typically contains a series of SQL commands that create, modify, or delete database objects such as tables, columns, indexes, and constraints. Migration files are version-controlled and stored in a directory within the project.
+
+- Code that describes the changes to the database schema
+
+When a migration file is applied to a database, it updates the schema to reflect the changes defined in the file. This process is known as **applying a migration**. If a migration file is no longer needed or contains errors, it can be rolled back by **reverting the migration**.
+
+Migration files are typically named with a timestamp and a description of the changes they contain. For example, a migration file that adds a `phone_number` column to the `users` table might be named `20220101120000_add_phone_number_to_users.sql`. The timestamp in the filename ensures that migration files are applied in the correct order.
+
+A migration file can be divided into two sections: **up** and **down**. The **up** section contains the SQL commands to apply the migration, while the **down** section contains the commands to revert the migration. This allows developers to **apply** and **revert** migrations easily.
+
+```sql
+-- 20220101120000_add_phone_number_to_users.sql
+
+-- Up
+ALTER TABLE users ADD COLUMN phone_number VARCHAR(20);
+
+-- Down
+ALTER TABLE users DROP COLUMN phone_number;
+```
+
+In the example above, the migration file adds a `phone_number` column to the `users` table in the **up** section and drops the column in the **down** section. This structure allows developers to apply the migration to add the column and revert the migration to remove the column if needed.
