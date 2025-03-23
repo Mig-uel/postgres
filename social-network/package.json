@@ -6,5 +6,8 @@
   "dependencies": {
     "node-pg-migrate": "^7.9.1",
     "pg": "^8.14.1"
+  },
+  "scripts": {
+    "migrate": "node-pg-migrate"
   }
 }
