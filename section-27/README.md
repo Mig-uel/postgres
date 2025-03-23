@@ -87,3 +87,27 @@ WITH RECURSIVE countdown(val) as (
 ## Why Use Recursive CTEs?
 
 An example of a situation where you might want to use a recursive CTE is when you want to recommend a list of people to follow on a social media platform based on their connections. For example, if you have a table of users and their followers, you can use a recursive CTE to find all the followers of a specific user and their followers, and so on.
+
+## Writing the Query
+
+**Suggest a list of people to follow based on their connections:**
+
+```sql
+WITH RECURSIVE suggestions(leader_id, follower_id, depth) AS (
+   SELECT leader_id, follower_id, 1 as depth -- Anchor member (base case)
+   FROM followers -- Table containing the relationships
+   WHERE follower_id = 1000 -- Starting point (user ID 1000)
+   UNION ALL -- Combine the results of the anchor member and recursive member
+   SELECT followers.leader_id, followers.follower_id, depth + 1 -- Recursive member (recursive case)
+   FROM followers -- Table containing the relationships
+   JOIN suggestions ON suggestions.leader_id = followers.follower_id -- Join to find the next level of followers
+   WHERE depth < 3 -- Limit the depth of recursion (e.g., up to 3 levels deep)
+)
+SELECT DISTINCT users.id, users.username
+FROM suggestions -- Select from the CTE
+JOIN users ON users.id = suggestions.leader_id -- Join with the users table to get user details
+WHERE depth > 1 -- Filter to exclude the starting user (user ID 1000)
+LIMIT 30; -- Limit the number of results to 30
+```
+
+This query uses a recursive CTE to find suggestions for users to follow based on their connections. It starts with a specific user (user ID 1000) and recursively finds their followers and their followers' followers, up to a specified depth (in this case, 3 levels deep). The final result includes distinct user IDs and usernames of the suggested users to follow.
