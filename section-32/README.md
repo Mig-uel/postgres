@@ -107,3 +107,7 @@ Both options, we might want to run the updates in a single transaction to ensure
 - The transaction might hold a lock on the row that is being updated, preventing other transactions from reading or writing to that row.
 
 This can lead to performance issues and potential deadlocks if multiple transactions are trying to update the same rows.
+
+To avoid this issue, we can batch the updates into smaller chunks and commit each batch separately. This allows other transactions to read and write to the rows that are not being updated, reducing the risk of deadlocks and improving performance.
+
+By batching the updates and committing each batch separately, we can avoid long transaction locks and ensure data consistency while running data migrations.
