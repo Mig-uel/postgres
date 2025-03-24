@@ -68,3 +68,42 @@ Here's an example of what the schema migration might look like:
 - Drop the `x` and `y` columns from the `posts` table.
 
 By separating schema and data migrations, we can manage changes to the database more effectively and reduce the risk of introducing errors or inconsistencies.
+
+## Transaction Locks
+
+To handle the data migration, we have two options:
+
+1. **Determine Updates in JavaScript**: We can write a script in JavaScript that will read the data from the `x` and `y` columns, calculate the point, and write the data to the `loc` column. This script can be run as a one-off process and does not require a transaction lock.
+
+**Pros**:
+
+- No transaction lock required.
+- Can be run as a one-off process.
+- We can run complex business logic/validation in the script.
+
+**Cons**:
+
+- Requires additional scripting.
+- May be more error-prone.
+- We might have many posts, so this could be slow or crash if the script is not optimized.
+- Batching could fail halfway through, leaving us in a halfway-between state.
+- Requires us to manually connect to the database from another environment.
+
+2. **Rely on SQL**: We can write a SQL script that will update the data in the `posts` table directly. This script can be run as a one-off process and does not require a transaction lock.
+
+**Pros**:
+
+- No transaction lock required.
+- Can be run as a one-off process.
+- No moving info between the database and another environment.
+
+**Cons**:
+
+- Requires us to write complex SQL.
+- Harder to implement complex business logic/validation.
+
+Both options, we might want to run the updates in a single transaction to ensure data consistency. However, there is an issue running a long transaction (e.g. updating millions of rows).
+
+- The transaction might hold a lock on the row that is being updated, preventing other transactions from reading or writing to that row.
+
+This can lead to performance issues and potential deadlocks if multiple transactions are trying to update the same rows.
