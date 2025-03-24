@@ -39,7 +39,16 @@ This is just one reason why data migrations can be risky and should be handled w
 
 To properly run data and schema migrations, we can split the migrations into separate migrations. This way, we can run schema migrations first, then data migrations, ensuring that the changes are applied in the correct order.
 
-Here's an example of how we might structure our migrations:
+**Requirements**: We have a table called `posts` with the following structure:
+
+- `id` (int, primary key)
+- `url` (text)
+- `x` (int)
+- `y` (int)
+
+We want to add a new column called `loc` (point) to the `posts` table and populate it with the values of `x` and `y` as a point.
+
+Here's how we might structure our migrations:
 
 ```
 migrations/
@@ -49,5 +58,13 @@ migrations/
 ```
 
 In this structure, we have separate migration scripts for schema changes and data changes. We can run the schema migration first to update the database structure, then run the data migration to update the data.
+
+Here's an example of what the schema migration might look like:
+
+- Add a new column `loc` to the `posts` table:
+- Deploy new version of API that will write values to both `x` and `y` columns and the new `loc` column.
+- Copy the values from `x` and `y` columns to the new `loc` column.
+- Update the API to read and write only to the new `loc` column.
+- Drop the `x` and `y` columns from the `posts` table.
 
 By separating schema and data migrations, we can manage changes to the database more effectively and reduce the risk of introducing errors or inconsistencies.
