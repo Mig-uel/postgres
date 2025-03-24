@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "node-pg-migrate": "^7.9.1",
     "pg": "^8.14.1"
   },
@@ -11,6 +13,6 @@
     "migrate": "node-pg-migrate"
   },
   "devDependencies": {
-    "dotenv": "^16.4.7"
+    "nodemon": "^3.1.9"
   }
 }
