@@ -27,6 +27,8 @@ There are several reasons to not run data migrations at the same time as schema 
 
 By separating schema and data migrations, developers can manage changes to the database more effectively and reduce the risk of introducing errors or inconsistencies.
 
+If running both types of migrations together, you may think executing them in a transaction would be a good idea. However, this can lead to issues with data consistency, as the transaction might not be able to see changes made by other processes running in parallel.
+
 Migrations should probably be executed in a transaction, so that if something goes wrong, the changes can be rolled back. This is especially important when running data migrations, as they can have a significant impact on the database.
 
 However, because of how transactions work (i.e. the transaction takes a copy of the data at that point in time) and an API server might be running in parallel, the transaction might not be able to see the changes made by the API server. This can lead to inconsistencies in the data.
