@@ -10,7 +10,8 @@
     "pg": "^8.14.1"
   },
   "scripts": {
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "dev": "nodemon index.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
