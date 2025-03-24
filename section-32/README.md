@@ -34,3 +34,20 @@ Migrations should probably be executed in a transaction, so that if something go
 However, because of how transactions work (i.e. the transaction takes a copy of the data at that point in time) and an API server might be running in parallel, the transaction might not be able to see the changes made by the API server. This can lead to inconsistencies in the data.
 
 This is just one reason why data migrations can be risky and should be handled with care.
+
+## Properly Running Data and Schema Migrations
+
+To properly run data and schema migrations, we can split the migrations into separate migrations. This way, we can run schema migrations first, then data migrations, ensuring that the changes are applied in the correct order.
+
+Here's an example of how we might structure our migrations:
+
+```
+migrations/
+    versions/
+        001_schema_migration.py
+        002_data_migration.py
+```
+
+In this structure, we have separate migration scripts for schema changes and data changes. We can run the schema migration first to update the database structure, then run the data migration to update the data.
+
+By separating schema and data migrations, we can manage changes to the database more effectively and reduce the risk of introducing errors or inconsistencies.
