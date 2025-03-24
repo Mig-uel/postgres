@@ -25,6 +25,7 @@ app.get('/posts', async (req, res) => {
             <th>id</th>
             <th>lng</th>
             <th>lat</th>
+            <th>loc</th>
           </tr>
         </thead>
 
@@ -36,6 +37,7 @@ app.get('/posts', async (req, res) => {
                 <td>${row.id}</td>
                 <td>${row.lng}</td>
                 <td>${row.lat}</td>
+                <td>${row.loc}</td>
               </tr>
             `
             })
