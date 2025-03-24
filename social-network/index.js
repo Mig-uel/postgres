@@ -64,7 +64,12 @@ app.get('/posts', async (req, res) => {
 app.post('/posts', async (req, res) => {
   const { lng, lat } = req.body
 
-  await pool.query(`INSERT INTO posts (lat, lng) VALUES ($1, $2)`, [lat, lng])
+  // insert values into new loc column
+  await pool.query(`INSERT INTO posts (lat, lng, loc) VALUES ($1, $2, $3)`, [
+    lat,
+    lng,
+    `(${lng}, ${lat})`,
+  ])
 
   return res.redirect('/posts')
 })
