@@ -111,3 +111,7 @@ This can lead to performance issues and potential deadlocks if multiple transact
 To avoid this issue, we can batch the updates into smaller chunks and commit each batch separately. This allows other transactions to read and write to the rows that are not being updated, reducing the risk of deadlocks and improving performance.
 
 By batching the updates and committing each batch separately, we can avoid long transaction locks and ensure data consistency while running data migrations.
+
+## Updating Values
+
+We are going to update all of our values by using option 2, relying on SQL. We will write a SQL script that will update the data in the `posts` table directly.
