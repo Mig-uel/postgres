@@ -15,5 +15,10 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
+  },
+  "scripts": {
+    "migrate": "node-pg-migrate",
+    "dev": "nodemon index.js",
+    "test": "jest"
   }
 }
