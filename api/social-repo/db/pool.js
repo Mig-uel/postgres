@@ -1,21 +1,21 @@
 const pg = require('pg')
 
 class Pool {
-  _pool = null
+  #_pool = null
 
   connect(options) {
-    this._pool = new pg.Pool(options)
+    this.#_pool = new pg.Pool(options)
 
-    return this._pool.query('SELECT 1 + 1;')
+    return this.#_pool.query('SELECT 1 + 1;')
   }
 
   close() {
-    return this._pool.end()
+    return this.#_pool.end()
   }
 
   // TODO: REALLY BIG SECURITY ISSUE HERE
   query(sql) {
-    return this._pool.query(sql)
+    return this.#_pool.query(sql)
   }
 }
 
