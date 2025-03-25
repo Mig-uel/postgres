@@ -51,7 +51,11 @@ class UserRepo {
     ).rows
   }
 
-  static async delete() {}
+  static async delete(id) {
+    return (
+      await pool.query(`DELETE FROM users WHERE id = $1 RETURNING *;`, [id])
+    ).rows
+  }
 }
 
 module.exports = {

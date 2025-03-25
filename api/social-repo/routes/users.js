@@ -70,7 +70,7 @@ userRouter.put('/:id', async (req, res) => {
     (updatedAt = new Date())
   )
 
-  if (!user.length)
+  if (!user)
     return res.status(404).json({
       message: 'No user found',
     })
@@ -83,7 +83,15 @@ userRouter.put('/:id', async (req, res) => {
  * @method DELETE
  * @route /users/:id
  */
-userRouter.delete('/:id', async (req, res) => {})
+userRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params
+
+  const user = await UserRepo.delete(id)
+
+  if (!user) return res.status(404).json({ message: 'User not found' })
+
+  return res.json(user)
+})
 
 module.exports = {
   userRouter,
