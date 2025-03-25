@@ -8,6 +8,15 @@ class Pool {
 
     return this._pool.query('SELECT 1 + 1;')
   }
+
+  close() {
+    return this._pool.end()
+  }
+
+  // TODO: REALLY BIG SECURITY ISSUE HERE
+  query(sql) {
+    return this._pool.query(sql)
+  }
 }
 
 module.exports = new Pool()
