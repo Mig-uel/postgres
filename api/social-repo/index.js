@@ -13,8 +13,12 @@ const options = {
   password: process.env.DB_PASSWORD,
 }
 
-pool.connect(options)
-
-app.listen(3005, () => {
-  console.log('----- SERVER RUNNING -----')
-})
+pool
+  .connect(options)
+  .then(() => {
+    console.log('----- CONNECTED TO PG -----')
+    app.listen(3005, () => {
+      console.log('----- NODE SERVER RUNNING -----')
+    })
+  })
+  .catch((error) => console.log(error))
