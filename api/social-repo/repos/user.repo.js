@@ -9,7 +9,16 @@ class UserRepo {
     ).rows
   }
 
-  static async findById() {}
+  static async findById(id) {
+    // WARNING: REALLY BIG SECURITY ISSUE
+
+    return (
+      await pool.query(`
+        SELECT * FROM users
+        WHERE id = ${id};      
+      `)
+    ).rows
+  }
 
   static async insert() {}
 
