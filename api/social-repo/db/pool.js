@@ -13,7 +13,6 @@ class Pool {
     return this.#_pool.end()
   }
 
-  // TODO: REALLY BIG SECURITY ISSUE HERE
   query(sql, values) {
     return this.#_pool.query(sql, values)
   }
