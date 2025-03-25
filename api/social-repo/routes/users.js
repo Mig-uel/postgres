@@ -54,7 +54,29 @@ userRouter.post('/', async (req, res) => {
  * @method PUT
  * @route /users/:id
  */
-userRouter.put('/:id', async (req, res) => {})
+userRouter.put('/:id', async (req, res) => {
+  const { id } = req.params
+  const { bio, username } = req.body
+
+  if (!username && !bio)
+    return res.status(400).json({
+      message: 'User not updated',
+    })
+
+  const user = await UserRepo.update(
+    id,
+    username,
+    bio,
+    (updatedAt = new Date())
+  )
+
+  if (!user.length)
+    return res.status(404).json({
+      message: 'No user found',
+    })
+
+  return res.json(user)
+})
 
 /**
  * Delete a user with a particular ID

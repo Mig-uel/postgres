@@ -41,7 +41,15 @@ class UserRepo {
     ).rows
   }
 
-  static async update() {}
+  static async update(id, username, bio, updatedAt) {
+    return (
+      await pool.query(
+        `UPDATE users SET username = $1, bio = $2, updated_at = $3
+      WHERE id = $4 RETURNING *;`,
+        [username, bio, updatedAt, id]
+      )
+    ).rows
+  }
 
   static async delete() {}
 }
