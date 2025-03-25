@@ -10,12 +10,14 @@ class UserRepo {
   }
 
   static async findById(id) {
-    // WARNING: REALLY BIG SECURITY ISSUE
     return (
-      await pool.query(`
+      await pool.query(
+        `
         SELECT * FROM users
-        WHERE id = ${id};      
-      `)
+        WHERE id = $1;      
+      `,
+        [id]
+      )
     ).rows
   }
 
