@@ -32,7 +32,14 @@ class UserRepo {
     }
   }
 
-  static async insert() {}
+  static async insert(username, bio) {
+    return (
+      await pool.query(
+        'INSERT INTO users (username, bio) VALUES ($1, $2) RETURNING *;',
+        [username, bio]
+      )
+    ).rows
+  }
 
   static async update() {}
 

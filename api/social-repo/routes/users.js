@@ -36,7 +36,18 @@ userRouter.get('/:id', async (req, res) => {
  * @method POST
  * @route /users
  */
-userRouter.post('/', async (req, res) => {})
+userRouter.post('/', async (req, res) => {
+  const { bio, username } = req.body
+
+  if (!username.trim())
+    return res.status(400).json({
+      message: 'Username required',
+    })
+
+  const newUser = await UserRepo.insert(username, bio)
+
+  return res.json(newUser)
+})
 
 /**
  * Update a user with a particular ID
