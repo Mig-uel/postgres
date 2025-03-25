@@ -10,7 +10,7 @@ userRouter.get('/', async (req, res) => {
   // run a query to get all users
   const users = await UserRepo.find()
 
-  if (!users) return res.json({ message: 'No users found!' })
+  if (!users.length) return res.json({ message: 'No users found' })
 
   // send the result back to the user
   return res.json(users)
@@ -21,7 +21,15 @@ userRouter.get('/', async (req, res) => {
  * @method GET
  * @route /users/:id
  */
-userRouter.get('/:id', async (req, res) => {})
+userRouter.get('/:id', async (req, res) => {
+  const { id } = req.params
+
+  const user = await UserRepo.findById(id)
+
+  if (!user.length) return res.status(404).json({ message: 'No user found' })
+
+  return res.json(user)
+})
 
 /**
  * Create a new user
