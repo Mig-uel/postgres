@@ -10,15 +10,26 @@ class UserRepo {
   }
 
   static async findById(id) {
-    return (
-      await pool.query(
-        `
-        SELECT * FROM users
-        WHERE id = $1;      
-      `,
-        [id]
-      )
-    ).rows
+    try {
+      return (
+        await pool.query(
+          `
+          SELECT * FROM users
+          WHERE id = $1;      
+        `,
+          [id]
+        )
+      ).rows
+    } catch (error) {
+      console.log(error)
+
+      return [
+        {
+          error,
+          users: [],
+        },
+      ]
+    }
   }
 
   static async insert() {}
