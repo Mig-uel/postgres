@@ -41,3 +41,35 @@ http://localhost:3005/users/1; DROP TABLE users;
 This could potentially drop the `users` table from the database.
 
 To prevent SQL injection attacks, we should always use parameterized queries or prepared statements when interacting with the database.
+
+**WE NEVER, EVER DIRECTLY CONCATENATE USER INPUT INTO OUR SQL QUERIES!**
+
+There are a variety of safe ways to get user input values into a string that can be used in a query. For example, we can use the `pg` library to create a parameterized query:
+
+```javascript
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user:
+  host:
+  database:
+  password:
+  port:
+});
+
+const getUserById = async (id) => {
+  const query = 'SELECT * FROM users WHERE id = $1';
+  const values = [id];
+
+  try {
+    const { rows } = await pool.query(query, values);
+    return rows;
+  } catch (error) {
+    console.error('Error executing query', error);
+  }
+};
+```
+
+In this example, we use the `$1` placeholder in the query string and pass the actual value as an array in the `values` variable. This ensures that the user input is treated as a value and not as part of the query itself.
+
+By using parameterized queries, we can prevent SQL injection attacks and ensure the security of our application.
