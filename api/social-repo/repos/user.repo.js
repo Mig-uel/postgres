@@ -2,9 +2,11 @@ const pool = require('../db/pool')
 
 class UserRepo {
   static async find() {
-    return await pool.query(`
+    return (
+      await pool.query(`
         SELECT * FROM users;
-      `).rows
+      `)
+    ).rows
   }
 
   static async findById() {}
