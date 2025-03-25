@@ -73,3 +73,39 @@ const getUserById = async (id) => {
 In this example, we use the `$1` placeholder in the query string and pass the actual value as an array in the `values` variable. This ensures that the user input is treated as a value and not as part of the query itself.
 
 By using parameterized queries, we can prevent SQL injection attacks and ensure the security of our application.
+
+## Cross-Site Scripting (XSS) Attacks
+
+Cross-Site Scripting (XSS) is another common security vulnerability that occurs when an attacker is able to inject malicious scripts into a web application. This can happen when user input is not properly sanitized or validated before being displayed on a web page.
+
+For example, consider the following code snippet:
+
+```javascript
+app.get('/search', (req, res) => {
+  const query = req.query.q
+  res.send(`<h1>Search Results for ${query}</h1>`)
+})
+```
+
+If the `q` parameter is not properly sanitized, an attacker could input the following value:
+
+```html
+<script>
+  alert('XSS Attack!')
+</script>
+```
+
+The resulting HTML would look like this:
+
+```html
+<h1>
+  Search Results for
+  <script>
+    alert('XSS Attack!')
+  </script>
+</h1>
+```
+
+When this page is rendered in the browser, the JavaScript code within the `<script>` tags would be executed, potentially allowing the attacker to steal sensitive information or perform other malicious actions.
+
+To prevent XSS attacks, it is important to sanitize user input before displaying it on a web page. This can be done by escaping special characters or using a library that automatically sanitizes user input.
