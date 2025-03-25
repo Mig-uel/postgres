@@ -1,11 +1,20 @@
 const userRouter = require('express').Router()
+const { UserRepo } = require('../repos/user.repo')
 
 /**
  * Fetch all users from the users table
  * @method GET
  * @route /users
  */
-userRouter.get('/', async (req, res) => {})
+userRouter.get('/', async (req, res) => {
+  // run a query to get all users
+  const users = await UserRepo.find()
+
+  if (!users) return res.json({ message: 'No users found!' })
+
+  // send the result back to the user
+  return res.json(users)
+})
 
 /**
  * Fetch a user with a particular ID
