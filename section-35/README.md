@@ -74,6 +74,15 @@ In this example, we use the `$1` placeholder in the query string and pass the ac
 
 By using parameterized queries, we can prevent SQL injection attacks and ensure the security of our application.
 
+## Handling SQL Injection with Prepared Statements
+
+Two ways of handling SQL injection are:
+
+- Adding code to 'sanitize' the input to our application.
+- Rely on the database to sanitize the input for us.
+
+Prepared statements are another way to prevent SQL injection attacks. A prepared statement is a feature provided by database systems that allows queries to be precompiled and stored in a cache, ready to be executed with different parameters.
+
 ## Cross-Site Scripting (XSS) Attacks
 
 Cross-Site Scripting (XSS) is another common security vulnerability that occurs when an attacker is able to inject malicious scripts into a web application. This can happen when user input is not properly sanitized or validated before being displayed on a web page.
