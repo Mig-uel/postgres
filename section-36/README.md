@@ -52,3 +52,17 @@ CREATE TABLE test_schema.users (
 This command will create a new table called `users` inside of the `test_schema` schema. We can then run queries against this table by setting the `search_path` to `test_schema`.
 
 Whenever you want to interact with a specific schema, you can set the `search_path` to that schema or specify the schema name when creating tables or running queries. This way, you can keep your tables organized and prevent conflicts between test files.
+
+## Controlling Schema Access with Search Path
+
+The `search_path` is a setting in PostgreSQL that controls the order in which schemas are searched for tables. By default, the `search_path` is set to `"$user", public`, which means that PostgreSQL will first look for tables in the current user's schema and then in the `public` schema.
+
+`"$user"` is a special variable that represents the current user's schema. When you create a new table without specifying a schema, it will be created in the current user's schema by default.
+
+You can change the `search_path` to include additional schemas by running the following command:
+
+```sql
+SET search_path TO test_schema, public;
+```
+
+This command will set the `search_path` to first look for tables in the `test_schema` schema and then in the `public` schema. This way, you can control the order in which schemas are searched for tables and prevent conflicts between schemas. Postgres will look for tables in the `test_schema` schema first before looking in the `public` schema.
