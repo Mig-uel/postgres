@@ -66,3 +66,14 @@ SET search_path TO test_schema, public;
 ```
 
 This command will set the `search_path` to first look for tables in the `test_schema` schema and then in the `public` schema. This way, you can control the order in which schemas are searched for tables and prevent conflicts between schemas. Postgres will look for tables in the `test_schema` schema first before looking in the `public` schema.
+
+## Strategy for Isolation
+
+For each test file that we write:
+
+- Connect to Postgres as normal.
+- Generate a random string of chars (e.g., `zxcv`).
+- Create a new user (role) in Postgres with the name of the random string.
+- Create a new schema with the name of the random string.
+- Tell our test file to connect to Postgres using the name of the random string as the username.
+- Postgres will automatically look for tables in the schema with the same name as the username.
