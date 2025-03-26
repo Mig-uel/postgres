@@ -4,7 +4,7 @@ const pool = require('../../db/pool')
 const app = require('../../server')()
 const { UserRepo } = require('../../repos/user.repo')
 require('dotenv').config({
-  path: path.resolve(__dirname, '.env'),
+  path: path.resolve(__dirname, '../../.env'),
 })
 
 const options = {
