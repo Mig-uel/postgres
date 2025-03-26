@@ -23,8 +23,6 @@ afterAll(() => {
 it('create a user', async () => {
   const startingCount = await UserRepo.count()
 
-  expect(Number(startingCount)).toEqual(0)
-
   await await request(app)
     .post('/users')
     .send({
@@ -35,5 +33,5 @@ it('create a user', async () => {
 
   const finishCount = await UserRepo.count()
 
-  expect(Number(finishCount)).toEqual(1)
+  expect(Number(finishCount - startingCount)).toEqual(1)
 })
