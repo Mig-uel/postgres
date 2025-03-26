@@ -7,6 +7,14 @@ require('dotenv').config({
   path: path.resolve(__dirname, '../.env'),
 })
 
+const DEFAULT_OPTIONS = {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: 'socialnetwork-test',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+}
+
 class Context {
   #_roleName
 
@@ -15,13 +23,7 @@ class Context {
     const roleName = 't' + randomBytes(4).toString('hex')
 
     // connect to PG as usual
-    await pool.connect({
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      database: 'socialnetwork-test',
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-    })
+    await pool.connect(DEFAULT_OPTIONS)
 
     // create a new role
     await pool.query(
@@ -53,7 +55,6 @@ class Context {
     })
 
     // connect to pg a the newly created role
-
     await pool.connect({
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
@@ -67,6 +68,21 @@ class Context {
 
   constructor(roleName) {
     this.#_roleName = roleName
+  }
+
+  async close() {
+    // disconnect from PG
+    await pool.close()
+
+    // reconnect as our root user
+    await pool.connect(DEFAULT_OPTIONS)
+
+    // delete the role and schema we created
+    await pool.query(format('DROP SCHEMA %I CASCADE;', this.#_roleName))
+    await pool.query(format('DROP ROLE %I;', this.#_roleName))
+
+    // disconnect
+    await pool.close()
   }
 }
 
