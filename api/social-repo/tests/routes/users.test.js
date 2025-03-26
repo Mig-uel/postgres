@@ -5,12 +5,14 @@ const app = require('../../server')()
 const { UserRepo } = require('../../repos/user.repo')
 const Context = require('../context')
 
+let context
+
 beforeAll(async () => {
-  const context = await Context.build()
+  context = await Context.build()
 })
 
 afterAll(() => {
-  pool.close()
+  return context.close()
 })
 
 it('create a user', async () => {
