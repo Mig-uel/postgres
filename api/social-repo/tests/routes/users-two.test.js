@@ -1,23 +1,16 @@
-const path = require('path')
 const request = require('supertest')
-const pool = require('../../db/pool')
 const app = require('../../server')()
 const { UserRepo } = require('../../repos/user.repo')
-require('dotenv').config({
-  path: path.resolve(__dirname, '../../.env'),
+const Context = require('../context')
+
+let context
+
+beforeAll(async () => {
+  context = await Context.build()
 })
 
-const options = {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: 'socialnetwork-test',
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-}
-
-beforeAll(() => pool.connect(options))
 afterAll(() => {
-  pool.close()
+  return context.close()
 })
 
 it('create a user', async () => {
