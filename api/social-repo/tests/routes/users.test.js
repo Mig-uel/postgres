@@ -1,6 +1,12 @@
 const request = require('supertest')
+const { options } = require('../../')
+const pool = require('../../db/pool')
 const app = require('../../server')()
 const { UserRepo } = require('../../repos/user.repo')
+
+beforeAll(() => {
+  return pool.connect(options)
+})
 
 it('create a user', async () => {
   const startingCount = await UserRepo.count()
