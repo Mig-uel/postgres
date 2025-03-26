@@ -86,7 +86,9 @@ class Context {
   }
 
   async reset() {
-    return pool.query('DELETE FROM users')
+    return pool.query(
+      'DELETE FROM users; ALTER SEQUENCE users_id_seq RESTART WITH 1'
+    )
   }
 }
 
