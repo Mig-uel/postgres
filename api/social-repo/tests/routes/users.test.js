@@ -4,14 +4,15 @@ const pool = require('../../db/pool')
 const app = require('../../server')()
 const { UserRepo } = require('../../repos/user.repo')
 
-beforeAll(() => {
-  return pool.connect(options)
+beforeAll(() => pool.connect(options))
+afterAll(() => {
+  pool.close()
 })
 
 it('create a user', async () => {
   const startingCount = await UserRepo.count()
 
-  expect(startingCount).toEqual(0)
+  expect(Number(startingCount)).toEqual(0)
 
   await await request(app)
     .post('/users')
@@ -23,5 +24,5 @@ it('create a user', async () => {
 
   const finishCount = await UserRepo.count()
 
-  expect(finishCount).toEqual(1)
+  expect(Number(finishCount)).toEqual(1)
 })
