@@ -1,3 +1,4 @@
+const path = require('path')
 const request = require('supertest')
 const pool = require('../../db/pool')
 const app = require('../../server')()
