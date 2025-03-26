@@ -21,3 +21,34 @@ More on what schemas are:
 - Each schema can have its own separate copy of a table.
 
 We are going to create a new schema for each test file that we write. This way, each test file will have its own set of tables that it can work with. This will prevent any conflicts between test files.
+
+## Creating and Accessing Schemas
+
+To create a new schema, we can use the following SQL command:
+
+```sql
+CREATE SCHEMA test_schema;
+```
+
+This command will create a new schema called `test_schema`. We can then run queries against this schema to interact with the tables inside of it.
+
+To access a specific schema, we can use the following SQL command:
+
+```sql
+SET search_path TO test_schema;
+```
+
+By setting the `search_path` to `test_schema`, we are telling PostgreSQL to look for tables inside of the `test_schema` schema. This way, we can interact with the tables inside of the `test_schema` schema without any conflicts.
+
+We can also create a new table inside of a specific schema by specifying the schema name when creating the table:
+
+```sql
+CREATE TABLE test_schema.users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50)
+);
+```
+
+This command will create a new table called `users` inside of the `test_schema` schema. We can then run queries against this table by setting the `search_path` to `test_schema`.
+
+Whenever you want to interact with a specific schema, you can set the `search_path` to that schema or specify the schema name when creating tables or running queries. This way, you can keep your tables organized and prevent conflicts between test files.
