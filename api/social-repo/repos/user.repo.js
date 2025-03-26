@@ -56,6 +56,10 @@ class UserRepo {
       await pool.query(`DELETE FROM users WHERE id = $1 RETURNING *;`, [id])
     ).rows
   }
+
+  static async count() {
+    return (await pool.query(`SELECT COUNT(*) FROM users;`)).rows[0].count
+  }
 }
 
 module.exports = {
